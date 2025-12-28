@@ -1,110 +1,168 @@
 #include <stdio.h>
 
-// Menu-Driven Program by Function
-void display_time_menu();
-void displayMenu();
-void get_user_time();
-void foodItemMorning();
-void Drinks(int selectDrinks);
+/* ---------- Function Declarations ---------- */
+void line();
+void smallLine();
 
+void displayMainMenu();
+void displayTimeMenu();
+void displayFoodMenu();
+
+void getUserTime();
+void foodItemMorning();
+void drinksMenu(int choice);
+
+/* ---------- MAIN FUNCTION ---------- */
 int main() {
-    int user_choice;
+    int userChoice;
 
     while (1) {
-        printf("\n------------ FOOD ORDER SYSTEM --------------\n");
-        printf("1. Time Greeting Menu\n");
-        printf("2. Display Food Menu\n");
-        printf("3. Order History\n");
-        printf("4. Exit\n");
-        printf("--------------------------------------------\n");
+        displayMainMenu();
 
         printf("Enter your choice: ");
-        scanf("%d", &user_choice);
+        scanf("%d", &userChoice);
 
-        if (user_choice == 1) {
-            display_time_menu();
-            get_user_time();
-        }
-        else if (user_choice == 2) {
-            displayMenu();
-        }
-        else if (user_choice == 3) {
-            printf("No order history available.\n");
-        }
-        else if (user_choice == 4) {
-            printf("Exiting program. Thank you!\n");
-            break;   
-        }
-        else {
-            printf("Invalid choice!\n");
+        switch (userChoice) {
+            case 1:
+                displayTimeMenu();
+                getUserTime();
+                break;
+
+            case 2:
+                displayFoodMenu();
+                break;
+
+            case 3:
+                printf("\nNo order history available.\n");
+                break;
+
+            case 4:
+                printf("\nThank you! Program exited successfully.\n");
+                return 0;
+
+            default:
+                printf("\nInvalid choice! Try again.\n");
         }
     }
-
-    return 0;
 }
 
-// food menu
-void displayMenu() {
-    printf("\nFood Menu Coming Soon...\n");
+/* ---------- DESIGN FUNCTIONS ---------- */
+void line() {
+    printf("============================================\n");
 }
 
-// time menu
-void display_time_menu() {
-    printf("\n--------------- TIME MENU --------------\n");
+void smallLine() {
+    printf("--------------------------------------------\n");
+}
+
+/* ---------- MENU DISPLAY FUNCTIONS ---------- */
+void displayMainMenu() {
+    line();
+    printf("        FOOD ORDER MANAGEMENT SYSTEM\n");
+    line();
+    printf("1. Time Greeting Menu\n");
+    printf("2. Display Food Menu\n");
+    printf("3. Order History\n");
+    printf("4. Exit\n");
+    line();
+}
+
+void displayTimeMenu() {
+    smallLine();
+    printf("            TIME GREETING MENU\n");
+    smallLine();
     printf("1. Good Morning\n");
     printf("2. Good Afternoon\n");
     printf("3. Good Evening\n");
-    printf("----------------------------------------\n");
+    smallLine();
 }
 
-//  logic
-void get_user_time() {
-    int time;
-    printf("Enter your choice: ");
-    scanf("%d", &time);
+void displayFoodMenu() {
+    smallLine();
+    printf("             FOOD MENU\n");
+    smallLine();
+    printf("Breakfast\n");
+    printf("Lunch\n");
+    printf("Dinner\n");
+    smallLine();
+}
 
-    switch (time) {
+/* ---------- LOGIC FUNCTIONS ---------- */
+void getUserTime() {
+    int timeChoice;
+
+    printf("Enter your choice: ");
+    scanf("%d", &timeChoice);
+
+    switch (timeChoice) {
         case 1:
-            printf("Good Morning \n");
-            printf("Food Item \n");
+            printf("\nGood Morning ☀️\n");
             foodItemMorning();
             break;
+
         case 2:
-            printf("Good Afternoon \n");
+            printf("\nGood Afternoon 🌤\n");
             break;
+
         case 3:
-            printf("Good Evening \n");
+            printf("\nGood Evening 🌙\n");
             break;
+
         default:
-            printf("Invalid time choice!\n");
+            printf("\nInvalid time choice!\n");
     }
 }
 
-void foodItemMorning(){
-    printf("Drinks (1)\n");
-    printf("Snacks (2)\n");
+/* ---------- MORNING FOOD ---------- */
+void foodItemMorning() {
+    int choice;
 
-    int selectUser;
-    printf("enter item: ");
-    scanf("%d", &selectUser);
-    if(selectUser==1){
-        printf("Hot Drinks (1)\n");
-        printf("Cold Drinks (2)\n");
+    smallLine();
+    printf("          MORNING FOOD MENU\n");
+    smallLine();
+    printf("1. Drinks\n");
+    printf("2. Snacks\n");
+    smallLine();
 
-        int selectDrinks;
-        printf("Select Drink: ");
-        scanf("%d", &selectDrinks);
+    printf("Select item: ");
+    scanf("%d", &choice);
 
-         Drinks(selectDrinks);
+    if (choice == 1) {
+        int drinkChoice;
 
+        smallLine();
+        printf("             DRINKS MENU\n");
+        smallLine();
+        printf("1. Hot Drink (Chai)\n");
+        printf("2. Cold Drink (Coca Cola)\n");
+        smallLine();
+
+        printf("Select drink: ");
+        scanf("%d", &drinkChoice);
+
+        drinksMenu(drinkChoice);
+    }
+    else if (choice == 2) {
+        printf("\nSnacks coming soon...\n");
+    }
+    else {
+        printf("\nInvalid item choice!\n");
     }
 }
 
-// drinks functions
-void Drinks(int selectDrinks){
-    if(selectDrinks == 1){
-        printf("Coca Cola");
-    }else if(selectDrinks == 2){
-        printf("Chai");
+/* ---------- DRINKS FUNCTION ---------- */
+void drinksMenu(int choice) {
+    smallLine();
+
+    if (choice == 1) {
+        printf("You selected: Chai ☕\n");
     }
+    else if (choice == 2) {
+        printf("You selected: Coca Cola 🥤\n");
+    }
+    else {
+        printf("Invalid drink choice!\n");
+    }
+
+    smallLine();
 }
