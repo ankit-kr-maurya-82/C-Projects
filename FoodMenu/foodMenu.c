@@ -14,6 +14,7 @@ void getUserTime();
 void foodItemMorning();
 void drinksMenu(int choice);
 void hotDrink();
+void TeaList();
 
 /* ---------- MAIN FUNCTION ---------- */
 int main() {
@@ -153,9 +154,6 @@ void foodItemMorning() {
     else if (choice == 2) {
         printf("\nSnacks coming soon...\n");
     }
-    else if (choice == 3) {
-        printf("\Breakfast coming soon...\n");
-    }
     else {
         printf("\nInvalid item choice!\n");
     }
@@ -179,10 +177,37 @@ void hotDrink(){
     smallLine();
     printf("     LIST OF HOT DRINKS\n");
     dotLine();
-    char hotDrinkList[3][20] = {"Tea", "Milk", "Coffee"};
-    float hotDrinkPriceList[3][20] = {10, 40, 30};
-    for (int i = 0; i < strlen(hotDrinkList[i]); i++){
+    char hotDrinkList[3][20] = {"Chai", "Milk", "Coffee"};
+    
+    for (int i = 0; i < 3; i++){
         printf(" %d. %s\n", i+1, hotDrinkList[i]);
     }
-    
+   
+    int selectedItem;
+    printf("Choice your hot drink: ");
+    scanf("%d", &selectedItem);
+
+    if(selectedItem == 1){
+        TeaList();
+    }
+}
+
+void TeaList(){
+    char *teaItem[] = {
+    "Masala chai",
+    "Adarak Chai",
+    "Nimbu Chai",
+    "Elaichi Chai",
+    "Cutting Chai"
+};
+
+float hotDrinkPriceList[] = {10, 40, 30, 10, 15};
+
+int itemList = sizeof(teaItem) / sizeof(teaItem[0]);
+
+for (int i = 0; i < itemList; i++) {
+    printf("%d. %s ___________________________ %.2f/-\n",
+           i + 1, teaItem[i], hotDrinkPriceList[i]);
+}
+
 }
