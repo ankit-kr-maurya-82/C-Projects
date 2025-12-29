@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include<string.h>
+#include <string.h>
 
 /* ---------- Menu-Driven Program using Functions  ---------- */
 void line();
@@ -15,56 +15,64 @@ void foodItemMorning();
 void drinksMenu(int choice);
 void hotDrink();
 void TeaList();
+void orderChai();
 
 /* ---------- MAIN FUNCTION ---------- */
-int main() {
+int main()
+{
     int userChoice;
 
-    while (1) {
+    while (1)
+    {
         displayMainMenu();
 
         printf("Enter your choice: ");
         scanf("%d", &userChoice);
 
-        switch (userChoice) {
-            case 1:
-                displayTimeMenu();
-                getUserTime();
-                break;
+        switch (userChoice)
+        {
+        case 1:
+            displayTimeMenu();
+            getUserTime();
+            break;
 
-            case 2:
-                displayFoodMenu();
-                break;
+        case 2:
+            displayFoodMenu();
+            break;
 
-            case 3:
-                printf("\nNo order history available.\n");
-                break;
+        case 3:
+            printf("\nNo order history available.\n");
+            break;
 
-            case 4:
-                printf("\nThank you! Program exited successfully.\n");
-                return 0;
+        case 4:
+            printf("\nThank you! Program exited successfully.\n");
+            return 0;
 
-            default:
-                printf("\nInvalid choice! Try again.\n");
+        default:
+            printf("\nInvalid choice! Try again.\n");
         }
     }
 }
 
 /* ---------- DESIGN FUNCTIONS ---------- */
-void line() {
+void line()
+{
     printf("============================================\n");
 }
 
-void smallLine() {
+void smallLine()
+{
     printf("--------------------------------------------\n");
 }
 
-void dotLine(){
+void dotLine()
+{
     printf("............................................\n");
 }
 
 /* ---------- MENU DISPLAY FUNCTIONS ---------- */
-void displayMainMenu() {
+void displayMainMenu()
+{
     line();
     printf("        FOOD ORDER MANAGEMENT SYSTEM\n");
     line();
@@ -75,7 +83,8 @@ void displayMainMenu() {
     line();
 }
 
-void displayTimeMenu() {
+void displayTimeMenu()
+{
     smallLine();
     printf("            TIME GREETING MENU\n");
     smallLine();
@@ -85,7 +94,8 @@ void displayTimeMenu() {
     smallLine();
 }
 
-void displayFoodMenu() {
+void displayFoodMenu()
+{
     smallLine();
     printf("             FOOD MENU\n");
     smallLine();
@@ -96,33 +106,36 @@ void displayFoodMenu() {
 }
 
 /* ---------- LOGIC FUNCTIONS ---------- */
-void getUserTime() {
+void getUserTime()
+{
     int timeChoice;
 
     printf("Enter your choice: ");
     scanf("%d", &timeChoice);
 
-    switch (timeChoice) {
-        case 1:
-            printf("\nGood Morning ☀️\n");
-            foodItemMorning();
-            break;
+    switch (timeChoice)
+    {
+    case 1:
+        printf("\nGood Morning ☀️\n");
+        foodItemMorning();
+        break;
 
-        case 2:
-            printf("\nGood Afternoon 🌤\n");
-            break;
+    case 2:
+        printf("\nGood Afternoon 🌤\n");
+        break;
 
-        case 3:
-            printf("\nGood Evening 🌙\n");
-            break;
+    case 3:
+        printf("\nGood Evening 🌙\n");
+        break;
 
-        default:
-            printf("\nInvalid time choice!\n");
+    default:
+        printf("\nInvalid time choice!\n");
     }
 }
 
 /* ---------- MORNING FOOD ---------- */
-void foodItemMorning() {
+void foodItemMorning()
+{
     int choice;
 
     smallLine();
@@ -136,7 +149,8 @@ void foodItemMorning() {
     printf("Select item: ");
     scanf("%d", &choice);
 
-    if (choice == 1) {
+    if (choice == 1)
+    {
         int drinkChoice;
 
         smallLine();
@@ -151,63 +165,85 @@ void foodItemMorning() {
 
         drinksMenu(drinkChoice);
     }
-    else if (choice == 2) {
+    else if (choice == 2)
+    {
         printf("\nSnacks coming soon...\n");
     }
-    else {
+    else
+    {
         printf("\nInvalid item choice!\n");
     }
 }
 
 /* ---------- DRINKS FUNCTION ---------- */
-void drinksMenu(int choice) {
+void drinksMenu(int choice)
+{
 
-    if (choice == 1) {
+    if (choice == 1)
+    {
         hotDrink();
     }
-    else if (choice == 2) {
+    else if (choice == 2)
+    {
         printf("You selected: Coca Cola \n");
     }
-    else {
+    else
+    {
         printf("Invalid drink choice!\n");
     }
 }
 
-void hotDrink(){
+void hotDrink()
+{
     smallLine();
     printf("     LIST OF HOT DRINKS\n");
     dotLine();
     char hotDrinkList[3][20] = {"Chai", "Milk", "Coffee"};
-    
-    for (int i = 0; i < 3; i++){
-        printf(" %d. %s\n", i+1, hotDrinkList[i]);
+
+    for (int i = 0; i < 3; i++)
+    {
+        printf(" %d. %s\n", i + 1, hotDrinkList[i]);
     }
-   
+
     int selectedItem;
     printf("Choice your hot drink: ");
     scanf("%d", &selectedItem);
 
-    if(selectedItem == 1){
+    if (selectedItem == 1)
+    {
         TeaList();
     }
 }
 
-void TeaList(){
+void TeaList()
+{
     char *teaItem[] = {
-    "Masala chai",
-    "Adarak Chai",
-    "Nimbu Chai",
-    "Elaichi Chai",
-    "Cutting Chai"
-};
+        "Masala chai",
+        "Adarak Chai",
+        "Nimbu Chai",
+        "Elaichi Chai",
+        "Cutting Chai"};
 
-float hotDrinkPriceList[] = {10, 40, 30, 10, 15};
+    float hotDrinkPriceList[] = {10, 40, 30, 10, 15};
 
-int itemList = sizeof(teaItem) / sizeof(teaItem[0]);
+    int itemList = sizeof(teaItem) / sizeof(teaItem[0]);
 
-for (int i = 0; i < itemList; i++) {
-    printf("%d. %s ___________________________ %.2f/-\n",
-           i + 1, teaItem[i], hotDrinkPriceList[i]);
+    for (int i = 0; i < itemList; i++)
+    {
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, teaItem[i], hotDrinkPriceList[i]);
+    }
+
+    orderChai();
+    
 }
 
+void orderChai(){
+    int selectChai;
+    printf("select a chai: ");
+    scanf("%d", &selectChai);
+
+    if(selectChai == 1){
+        printf("masala chai ordered at 10/-\n");
+    }
 }
