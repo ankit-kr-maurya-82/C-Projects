@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include<string.h>
 
-/* ---------- Function Declarations ---------- */
+/* ---------- Menu-Driven Program using Functions  ---------- */
 void line();
 void smallLine();
+void dotLine();
 
 void displayMainMenu();
 void displayTimeMenu();
@@ -11,6 +13,7 @@ void displayFoodMenu();
 void getUserTime();
 void foodItemMorning();
 void drinksMenu(int choice);
+void hotDrink();
 
 /* ---------- MAIN FUNCTION ---------- */
 int main() {
@@ -53,6 +56,10 @@ void line() {
 
 void smallLine() {
     printf("--------------------------------------------\n");
+}
+
+void dotLine(){
+    printf("............................................\n");
 }
 
 /* ---------- MENU DISPLAY FUNCTIONS ---------- */
@@ -122,6 +129,7 @@ void foodItemMorning() {
     smallLine();
     printf("1. Drinks\n");
     printf("2. Snacks\n");
+    printf("3. Breakfast\n");
     smallLine();
 
     printf("Select item: ");
@@ -133,8 +141,8 @@ void foodItemMorning() {
         smallLine();
         printf("             DRINKS MENU\n");
         smallLine();
-        printf("1. Hot Drink (Chai)\n");
-        printf("2. Cold Drink (Coca Cola)\n");
+        printf("1. Hot Drink\n");
+        printf("2. Cold Drink\n");
         smallLine();
 
         printf("Select drink: ");
@@ -145,6 +153,9 @@ void foodItemMorning() {
     else if (choice == 2) {
         printf("\nSnacks coming soon...\n");
     }
+    else if (choice == 3) {
+        printf("\Breakfast coming soon...\n");
+    }
     else {
         printf("\nInvalid item choice!\n");
     }
@@ -152,17 +163,26 @@ void foodItemMorning() {
 
 /* ---------- DRINKS FUNCTION ---------- */
 void drinksMenu(int choice) {
-    smallLine();
 
     if (choice == 1) {
-        printf("You selected: Chai ☕\n");
+        hotDrink();
     }
     else if (choice == 2) {
-        printf("You selected: Coca Cola 🥤\n");
+        printf("You selected: Coca Cola \n");
     }
     else {
         printf("Invalid drink choice!\n");
     }
+}
 
+void hotDrink(){
     smallLine();
+    printf("     LIST OF HOT DRINKS\n");
+    dotLine();
+    char hotDrinkList[3][20] = {"Tea", "Milk", "Coffee"};
+    float hotDrinkPriceList[3][20] = {10, 40, 30};
+    for (int i = 0; i < strlen(hotDrinkList[i]); i++){
+        printf(" %d. %s\n", i+1, hotDrinkList[i]);
+    }
+    
 }
