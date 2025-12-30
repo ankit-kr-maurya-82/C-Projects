@@ -5,6 +5,7 @@
 void line();
 void smallLine();
 void dotLine();
+void spaceTab(int num);
 
 void displayMainMenu();
 void displayTimeMenu();
@@ -25,7 +26,7 @@ int main()
     while (1)
     {
         displayMainMenu();
-
+        spaceTab(6);
         printf("Enter your choice: ");
         scanf("%d", &userChoice);
 
@@ -70,23 +71,40 @@ void dotLine()
     printf("............................................\n");
 }
 
+void spaceTab(int num){
+
+    for (int i = 0; i < num; i++)
+    {
+        printf("\t");
+    }
+    
+}
+
 /* ---------- MENU DISPLAY FUNCTIONS ---------- */
 void displayMainMenu()
 {
+    spaceTab(5);
     line();
-    printf("        FOOD ORDER MANAGEMENT SYSTEM\n");
+    spaceTab(6);
+    printf("FOOD ORDER MANAGEMENT SYSTEM\n");
+    spaceTab(5);
     line();
+    spaceTab(6);
     printf("1. Time Greeting Menu\n");
+    spaceTab(6);
     printf("2. Display Food Menu\n");
+    spaceTab(6);
     printf("3. Order History\n");
+    spaceTab(6);
     printf("4. Exit\n");
+    spaceTab(5);
     line();
 }
 
 void displayTimeMenu()
 {
     smallLine();
-    printf("            TIME GREETING MENU\n");
+    printf("TIME GREETING MENU\n");
     smallLine();
     printf("1. Good Morning\n");
     printf("2. Good Afternoon\n");
@@ -97,7 +115,7 @@ void displayTimeMenu()
 void displayFoodMenu()
 {
     smallLine();
-    printf("             FOOD MENU\n");
+    printf("\t\t\tFOOD MENU\n");
     smallLine();
     printf("Breakfast\n");
     printf("Lunch\n");
@@ -116,16 +134,16 @@ void getUserTime()
     switch (timeChoice)
     {
     case 1:
-        printf("\nGood Morning ☀️\n");
+        printf("\nGood Morning \n");
         foodItemMorning();
         break;
 
     case 2:
-        printf("\nGood Afternoon 🌤\n");
+        printf("\nGood Afternoon \n");
         break;
 
     case 3:
-        printf("\nGood Evening 🌙\n");
+        printf("\nGood Evening \n");
         break;
 
     default:
