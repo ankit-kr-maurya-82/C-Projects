@@ -16,12 +16,14 @@ void foodItemMorning();
 void drinksMenu(int choice);
 void hotDrink();
 void TeaList();
+void PriceCalculator(char *items[], float prices[], int choice);
 void orderChai(char *teaItem[],int itemList, float priceList[]);
 void CoffeeList();
 void orderCoffee(char *coffeeItem[], int itemList, float priceList[]);
 void coldDrink();
 void CarbonatedDrinksList();
 void ColaList();
+void orderCola(char *colaDrinkItem[], float priceList[], int itemList);
 
 /* ---------- MAIN FUNCTION ---------- */
 int main()
@@ -83,6 +85,24 @@ void spaceTab(int num){
         printf("\t");
     }
     
+}
+
+
+void PriceCalculator(char *items[], float prices[], int choice) {
+    int qty;
+    float totalAmount;
+
+    printf("Enter the quantity: ");
+    scanf("%d", &qty);
+
+    totalAmount = qty * prices[choice - 1];
+
+    dotLine();
+    printf("Item  : %s\n", items[choice - 1]);
+    printf("Price : %.2f\n", prices[choice - 1]);
+    printf("Qty   : %d\n", qty);
+    printf("Total : %.2f/-\n", totalAmount);
+    dotLine();
 }
 
 /* ---------- MENU DISPLAY FUNCTIONS ---------- */
@@ -263,15 +283,8 @@ void orderChai(char *teaItem[], int itemList, float priceList[]){
         return;
     }
 
-    int qty;
-    printf("Enter the quantity: ");
-    scanf("%d", &qty);
+       PriceCalculator(teaItem, priceList, selectChai);
 
-    float totalAmount = qty * priceList[selectChai - 1];
-
-    printf("\nItem: %s\n", teaItem[selectChai - 1]);
-    printf("Price: %.2f\n", priceList[selectChai - 1]);
-    printf("Total Amount: %.2f/-\n", totalAmount);
 }
 
 void CoffeeList(){
@@ -301,15 +314,7 @@ void orderCoffee(char *coffeeItem[], int itemList, float priceList[]){
         return;
     }
 
-    int qty;
-    printf("Enter the quantity: ");
-    scanf("%d", &qty);
-
-    float totalAmount = qty * priceList[selectCoffee - 1];
-
-    printf("\nItem: %s\n", coffeeItem[selectCoffee - 1]);
-    printf("Price: %.2f\n", priceList[selectCoffee - 1]);
-    printf("Total Amount: %.2f/-\n", totalAmount);
+    PriceCalculator(coffeeItem, priceList, selectCoffee);
 }
 
 
@@ -345,11 +350,45 @@ void CarbonatedDrinksList(){
     scanf("%d",&selectedItem);
 
     if(selectedItem == 1){
-        ColaDrinkList();
+        ColaList();
     }
 
 }
+void ColaList() {
+    char *colaDrinkItem[] = {
+        "Coca-Cola",
+        "Pepsi",
+        "Thums Up",
+        "Diet Coke"
+    };
 
-void ColaList(){
-    char colaDrinkItem[4][20] = {"Coca-Cola", "Pepsi", "Thums Up", "Diet Coke"};
+    float priceList[] = {15.3, 14.76, 45.94, 50.83};
+
+    int itemList = sizeof(colaDrinkItem) / sizeof(colaDrinkItem[0]);
+
+    dotLine();
+    spaceTab(4);
+    printf("COLA MENU\n");
+    dotLine();
+
+    for (int i = 0; i < itemList; i++) {
+        spaceTab(3);
+        printf("%d. %-12s Rs %.2f/-\n",
+               i + 1, colaDrinkItem[i], priceList[i]);
+    }
+
+    orderCola(colaDrinkItem,priceList,itemList);
+}
+
+void orderCola(char *colaDrinkItem[], float priceList[], int itemList){
+    int selectCola;
+     printf("Select Cola: ");
+    scanf("%d", &selectCola);
+
+    if(selectCola < 1 || selectCola > itemList){
+        printf("Invalid choice!\n");
+        return;
+    }
+
+    PriceCalculator(colaDrinkItem, priceList, selectCola);
 }
