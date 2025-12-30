@@ -19,6 +19,9 @@ void TeaList();
 void orderChai(char *teaItem[],int itemList, float priceList[]);
 void CoffeeList();
 void orderCoffee(char *coffeeItem[], int itemList, float priceList[]);
+void coldDrink();
+void CarbonatedDrinksList();
+void ColaList();
 
 /* ---------- MAIN FUNCTION ---------- */
 int main()
@@ -205,7 +208,7 @@ void drinksMenu(int choice)
     }
     else if (choice == 2)
     {
-        printf("You selected: Coca Cola \n");
+        coldDrink();
     }
     else
     {
@@ -220,8 +223,7 @@ void hotDrink()
     dotLine();
     char hotDrinkList[2][20] = {"Chai", "Coffee"};
 
-    for (int i = 0; i < 2; i++)
-    {
+    for (int i = 0; i < 2; i++){
         printf(" %d. %s\n", i + 1, hotDrinkList[i]);
     }
 
@@ -321,4 +323,51 @@ void orderCoffee(char *coffeeItem[], int itemList, float priceList[]){
     printf("\nItem: %s\n", coffeeItem[selectCoffee - 1]);
     printf("Price: %.2f\n", priceList[selectCoffee - 1]);
     printf("Total Amount: %.2f/-\n", totalAmount);
+}
+
+
+// Cold Drink
+
+void coldDrink(){
+    smallLine();
+    printf("LIST IF HOT DRINKS\n");
+    dotLine();
+    char coldDrinkList[5][100] = {"Carbonated Drinks", "Non-Carbonated Drinks", "Traditional & Herbal Drinks", "Energy Drinks", "Iced Tea & Coffee"};
+    for(int i=0;i<5;i++){
+        printf(" %d. %s\n", i+1, coldDrinkList[i]);
+    }
+
+    int selectedItem;
+    printf("Choice your cold drink: ");
+    scanf("%d",&selectedItem);
+
+    if(selectedItem == 1){
+        CarbonatedDrinksList();
+    }
+}
+
+void CarbonatedDrinksList(){
+    char carbonatedDrinksItem[5][20] = {
+        "Cola", 
+        "Lemon-lime",
+        "Fruit Flavored",
+        "Ginger Ale",
+        "Sparkling Water"
+    };
+    for(int i=0;i<5;i++){
+        printf(" %d. %s\n", i+1, carbonatedDrinksItem[i]);
+    }
+
+     int selectedItem;
+    printf("Choice your carbonatedDrinks drink: ");
+    scanf("%d",&selectedItem);
+
+    if(selectedItem == 1){
+        ColaList();
+    }
+
+}
+
+void ColaList(){
+
 }
