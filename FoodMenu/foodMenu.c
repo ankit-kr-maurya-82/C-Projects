@@ -238,12 +238,7 @@ void hotDrink()
     }
 }
 void TeaList(){
-    char *teaItem[] = {
-        "Masala chai",
-        "Adarak Chai",
-        "Nimbu Chai",
-        "Elaichi Chai",
-        "Cutting Chai"
+    char *teaItem[] = {"Masala chai","Adarak Chai","Nimbu Chai","Elaichi Chai","Cutting Chai"
     };
 
     float priceList[] = {10, 40, 30, 10, 15};
@@ -280,15 +275,7 @@ void orderChai(char *teaItem[], int itemList, float priceList[]){
 }
 
 void CoffeeList(){
-    char *coffeeItem[] = {
-        "Black Coffee",
-        "Cold Coffee",
-        "Espresso Coffee",
-        "Americano Coffee",
-        "Latte Coffee",
-        "Cappuccino Coffee",
-        "Mocha Coffee",
-        "Breve Coffee"
+    char *coffeeItem[] = {"Black Coffee","Cold Coffee","Espresso Coffee","Americano Coffee","Latte Coffee","Cappuccino Coffee","Mocha Coffee","Breve Coffee"
     };
 
     float priceList[] = {20, 30, 50, 80, 90, 140, 180, 190};
@@ -347,12 +334,7 @@ void coldDrink(){
 }
 
 void CarbonatedDrinksList(){
-    char carbonatedDrinksItem[5][20] = {
-        "Cola", 
-        "Lemon-lime",
-        "Fruit Flavored",
-        "Ginger Ale",
-        "Sparkling Water"
+    char carbonatedDrinksItem[5][20] = {"Cola","Lemon-lime", "Fruit Flavored","Ginger Ale","Sparkling Water"
     };
     for(int i=0;i<5;i++){
         printf(" %d. %s\n", i+1, carbonatedDrinksItem[i]);
@@ -363,11 +345,11 @@ void CarbonatedDrinksList(){
     scanf("%d",&selectedItem);
 
     if(selectedItem == 1){
-        ColaList();
+        ColaDrinkList();
     }
 
 }
 
 void ColaList(){
-
+    char colaDrinkItem[4][20] = {"Coca-Cola", "Pepsi", "Thums Up", "Diet Coke"};
 }
