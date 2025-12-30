@@ -1,7 +1,16 @@
 #include <stdio.h>
 #include <string.h>
 
-/* ---------- Menu-Driven Program using Functions  ---------- */
+// Menu-Driven Program using  Functions 
+
+// Structure
+typedef struct {
+    char name[50];
+    float price;
+} Drink;
+
+
+// All functions
 void line();
 void smallLine();
 void dotLine();
@@ -13,17 +22,27 @@ void displayFoodMenu();
 
 void getUserTime();
 void foodItemMorning();
+// Calculator
+void PriceCalculator(Drink items[], int choice);
 void drinksMenu(int choice);
+// Hot Drinks
 void hotDrink();
-void TeaList();
-void PriceCalculator(char *items[], float prices[], int choice);
-void orderChai(char *teaItem[],int itemList, float priceList[]);
-void CoffeeList();
-void orderCoffee(char *coffeeItem[], int itemList, float priceList[]);
+void TeaList();  // Tea
+void orderChai(Drink chai[], int count);
+void CoffeeList(); // Coffee
+void orderCoffee(Drink coffee[], int count);
+// Cold Drinks
 void coldDrink();
-void CarbonatedDrinksList();
-void ColaList();
+void CarbonatedDrinksList(); // Carbonated Drinks
+void ColaList(); // Cola
 void orderCola(char *colaDrinkItem[], float priceList[], int itemList);
+void LemonLimeList();
+// Fruit Flavored
+void FruitFlavoredList();
+// Ginger ALe
+void GingerAleList();
+// Sparkling Water
+void SparklingWaterList();
 
 /* ---------- MAIN FUNCTION ---------- */
 int main()
@@ -88,18 +107,18 @@ void spaceTab(int num){
 }
 
 
-void PriceCalculator(char *items[], float prices[], int choice) {
+void PriceCalculator(Drink items[], int choice) {
     int qty;
     float totalAmount;
 
     printf("Enter the quantity: ");
     scanf("%d", &qty);
 
-    totalAmount = qty * prices[choice - 1];
+    totalAmount = qty * items[choice - 1].price;
 
     dotLine();
-    printf("Item  : %s\n", items[choice - 1]);
-    printf("Price : %.2f\n", prices[choice - 1]);
+    printf("Item  : %s\n", items[choice - 1].name);
+    printf("Price : %.2f\n", items[choice - 1].price);
     printf("Qty   : %d\n", qty);
     printf("Total : %.2f/-\n", totalAmount);
     dotLine();
@@ -258,63 +277,57 @@ void hotDrink()
     }
 }
 void TeaList(){
-    char *teaItem[] = {"Masala chai","Adarak Chai","Nimbu Chai","Elaichi Chai","Cutting Chai"
-    };
+    Drink chai[] = {{"Masala chai", 10}, {"Adarak chai", 40}, {"Nimbu chai", 15.5}, {"Elaichi chai", 10}, {"Cuttung chai", 5}};
 
-    float priceList[] = {10, 40, 30, 10, 15};
+    int count = sizeof(chai) / sizeof(chai[0]);
 
-    int itemList = sizeof(teaItem) / sizeof(teaItem[0]);
-
-    for (int i = 0; i < itemList; i++){
+    for (int i = 0; i < count; i++){
         printf("%d. %s ___________________________ %.2f/-\n",
-               i + 1, teaItem[i], priceList[i]);
+               i + 1, chai[i], chai[i]);
     }
 
-    orderChai(teaItem, itemList, priceList);
+    orderChai(chai, count);
 }
 
-void orderChai(char *teaItem[], int itemList, float priceList[]){
+void orderChai(Drink chai[], int count){
     int selectChai;
     printf("Select a chai: ");
     scanf("%d", &selectChai);
 
-    if (selectChai < 1 || selectChai > itemList){
+    if (selectChai < 1 || selectChai > count){
         printf("Invalid choice!\n");
         return;
     }
 
-       PriceCalculator(teaItem, priceList, selectChai);
+       PriceCalculator(chai, selectChai);
 
 }
 
 void CoffeeList(){
-    char *coffeeItem[] = {"Black Coffee","Cold Coffee","Espresso Coffee","Americano Coffee","Latte Coffee","Cappuccino Coffee","Mocha Coffee","Breve Coffee"
-    };
+    Drink coffee[] = {{"Black Coffee", 20},{"Cold Coffee", 30},{"Espresso Coffee", 50},{"Americano Coffee", 80},{"Latte Coffee", 90},{"Cappuccino Coffee", 140},{"Mocha Coffee", 180},{"Breve Coffee", 190}};
 
-    float priceList[] = {20, 30, 50, 80, 90, 140, 180, 190};
+    int count = sizeof(coffee) / sizeof(coffee[0]);
 
-    int itemList = sizeof(coffeeItem) / sizeof(coffeeItem[0]);
-
-    for(int i=0; i<itemList; i++){
+    for(int i=0; i<count; i++){
         printf("%d. %s ___________________________ %.2f/-\n",
-               i + 1, coffeeItem[i], priceList[i]);
+               i + 1, coffee[i], coffee[i]);
     }
 
-    orderCoffee(coffeeItem, itemList, priceList);
+    orderCoffee(coffee, count);
 }
 
 
-void orderCoffee(char *coffeeItem[], int itemList, float priceList[]){
+void orderCoffee(Drink coffee[], int count){
     int selectCoffee;
     printf("Select a Coffee: ");
     scanf("%d", &selectCoffee);
 
-    if(selectCoffee < 1 || selectCoffee > itemList){
+    if(selectCoffee < 1 || selectCoffee > count){
         printf("Invalid choice!\n");
         return;
     }
 
-    PriceCalculator(coffeeItem, priceList, selectCoffee);
+    PriceCalculator(coffee, selectCoffee);
 }
 
 
@@ -351,9 +364,19 @@ void CarbonatedDrinksList(){
 
     if(selectedItem == 1){
         ColaList();
+    }else if(selectedItem == 2){
+        LemonLimeList();
+    }else if(selectedItem == 3){
+        FruitFlavoredList();
+    }else if(selectedItem == 4){
+        GingerAleList();
+    }else if(selectedItem == 5){
+        SparklingWaterList();
     }
 
 }
+
+// Cola 
 void ColaList() {
     char *colaDrinkItem[] = {
         "Coca-Cola",
@@ -392,3 +415,12 @@ void orderCola(char *colaDrinkItem[], float priceList[], int itemList){
 
     PriceCalculator(colaDrinkItem, priceList, selectCola);
 }
+
+// LemonLine
+void LemonLimeList(){}
+// Fruit Flavored
+void FruitFlavoredList(){}
+// Ginger ALe
+void GingerAleList(){}
+// Sparkling Water
+void SparklingWaterList(){}
