@@ -15,7 +15,7 @@ void foodItemMorning();
 void drinksMenu(int choice);
 void hotDrink();
 void TeaList();
-void orderChai(char *teaItem[],char itemList, float priceList[]);
+void orderChai(char *teaItem[],int itemList, float priceList[]);
 
 /* ---------- MAIN FUNCTION ---------- */
 int main()
@@ -214,7 +214,6 @@ void hotDrink()
         TeaList();
     }
 }
-
 void TeaList()
 {
     char *teaItem[] = {
@@ -222,7 +221,8 @@ void TeaList()
         "Adarak Chai",
         "Nimbu Chai",
         "Elaichi Chai",
-        "Cutting Chai"};
+        "Cutting Chai"
+    };
 
     float priceList[] = {10, 40, 30, 10, 15};
 
@@ -234,27 +234,28 @@ void TeaList()
                i + 1, teaItem[i], priceList[i]);
     }
 
-    orderChai( itemList, priceList);
-    
+    orderChai(teaItem, itemList, priceList);
 }
 
-void orderChai(char *teaItem[],char itemList, float priceList[]){
+void orderChai(char *teaItem[], int itemList, float priceList[])
+{
     int selectChai;
-    printf("select a chai: ");
+    printf("Select a chai: ");
     scanf("%d", &selectChai);
-    
 
-    if(selectChai < 1 || selectChai > itemList){
-       printf("Invalid choice!\n");
+    if (selectChai < 1 || selectChai > itemList)
+    {
+        printf("❌ Invalid choice!\n");
+        return;
     }
 
-    //  printf("you selected masala chai\n");
-        printf("Enter the quantity: ");
-        int qty;
-        scanf("%d", &qty);
-        float totalAmount = qty * priceList[selectChai -1];
-        printf("Item: %s\n", teaItem[selectChai -1] );
-        printf("Price: %.2f\n",priceList[selectChai - 1]);
-        printf("Total Amount: %.2f/-\n", totalAmount);
+    int qty;
+    printf("Enter the quantity: ");
+    scanf("%d", &qty);
 
+    float totalAmount = qty * priceList[selectChai - 1];
+
+    printf("\nItem: %s\n", teaItem[selectChai - 1]);
+    printf("Price: %.2f\n", priceList[selectChai - 1]);
+    printf("Total Amount: %.2f/-\n", totalAmount);
 }
