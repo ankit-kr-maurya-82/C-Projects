@@ -11,6 +11,18 @@ typedef struct {
 
 
 // All functions
+
+
+void clearScreen() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
+
+
 void line();
 void smallLine();
 void dotLine();
@@ -55,6 +67,7 @@ int main()
         spaceTab(6);
         printf("Enter your choice: ");
         scanf("%d", &userChoice);
+        clearScreen();
 
         switch (userChoice)
         {
@@ -174,6 +187,7 @@ void getUserTime()
 
     printf("Enter your choice: ");
     scanf("%d", &timeChoice);
+    clearScreen();
 
     switch (timeChoice)
     {
@@ -210,6 +224,7 @@ void foodItemMorning()
 
     printf("Select item: ");
     scanf("%d", &choice);
+    clearScreen();
 
     if (choice == 1)
     {
@@ -224,6 +239,8 @@ void foodItemMorning()
 
         printf("Select drink: ");
         scanf("%d", &drinkChoice);
+        clearScreen();
+
 
         drinksMenu(drinkChoice);
     }
@@ -277,17 +294,24 @@ void hotDrink()
     }
 }
 void TeaList(){
-    Drink chai[] = {{"Masala chai", 10}, {"Adarak chai", 40}, {"Nimbu chai", 15.5}, {"Elaichi chai", 10}, {"Cuttung chai", 5}};
+    Drink chai[] = {
+        {"Masala chai", 10},
+        {"Adarak chai", 40},
+        {"Nimbu chai", 15.5},
+        {"Elaichi chai", 10},
+        {"Cutting chai", 5}
+    };
 
     int count = sizeof(chai) / sizeof(chai[0]);
 
     for (int i = 0; i < count; i++){
         printf("%d. %s ___________________________ %.2f/-\n",
-               i + 1, chai[i], chai[i]);
+               i + 1, chai[i].name, chai[i].price);
     }
 
     orderChai(chai, count);
 }
+
 
 void orderChai(Drink chai[], int count){
     int selectChai;
@@ -304,17 +328,27 @@ void orderChai(Drink chai[], int count){
 }
 
 void CoffeeList(){
-    Drink coffee[] = {{"Black Coffee", 20},{"Cold Coffee", 30},{"Espresso Coffee", 50},{"Americano Coffee", 80},{"Latte Coffee", 90},{"Cappuccino Coffee", 140},{"Mocha Coffee", 180},{"Breve Coffee", 190}};
+    Drink coffee[] = {
+        {"Black Coffee", 20},
+        {"Cold Coffee", 30},
+        {"Espresso Coffee", 50},
+        {"Americano Coffee", 80},
+        {"Latte Coffee", 90},
+        {"Cappuccino Coffee", 140},
+        {"Mocha Coffee", 180},
+        {"Breve Coffee", 190}
+    };
 
     int count = sizeof(coffee) / sizeof(coffee[0]);
 
-    for(int i=0; i<count; i++){
+    for(int i = 0; i < count; i++){
         printf("%d. %s ___________________________ %.2f/-\n",
-               i + 1, coffee[i], coffee[i]);
+               i + 1, coffee[i].name, coffee[i].price);
     }
 
     orderCoffee(coffee, count);
 }
+
 
 
 void orderCoffee(Drink coffee[], int count){
@@ -378,8 +412,12 @@ void CarbonatedDrinksList(){
 
 // Cola 
 void ColaList() {
-    Drink cola[] = {{"Coca-Cola", 15.3},{"Pepsi", 14.76},{"Thums Up", 45.94},{"Diet Coke"}, 50.83};
-
+    Drink cola[] = {
+        {"Coca-Cola", 15.3},
+        {"Pepsi", 14.76},
+        {"Thums Up", 45.94},
+        {"Diet Coke", 50.83}
+    };
 
     int count = sizeof(cola) / sizeof(cola[0]);
 
@@ -388,13 +426,14 @@ void ColaList() {
     printf("COLA MENU\n");
     dotLine();
 
-     for (int i = 0; i < count; i++){
+    for (int i = 0; i < count; i++) {
         printf("%d. %s ___________________________ %.2f/-\n",
-               i + 1, cola[i], cola[i]);
+               i + 1, cola[i].name, cola[i].price);
     }
 
-    orderCola(cola,count);
+    orderCola(cola, count);
 }
+
 
 void orderCola(Drink cola[], int count){
     int selectCola;
