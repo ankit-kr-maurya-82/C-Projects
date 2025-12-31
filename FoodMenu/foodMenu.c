@@ -57,6 +57,14 @@ void FruitFlavoredList();
 void GingerAleList();
 // Sparkling Water
 void SparklingWaterList();
+void orderHistory() {
+    printf("Order history feature coming soon...\n");
+}
+displayDrinksMenu(){
+    printf("display drinks feature coming soon...\n");
+
+}
+
 
 /* ---------- MAIN FUNCTION ---------- */
 int main()
@@ -82,7 +90,7 @@ int main()
             orderHistory();
             break;
         case 3:
-            orderHistory();
+            displayDrinksMenu();
             break;
         case 4:
             printf("\nThank you! Program exited successfully.\n");
