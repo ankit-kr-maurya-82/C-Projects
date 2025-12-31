@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <string.h>
+#include <windows.h>  // Windows
+// Sleep(1000);
 
-// Menu-Driven Program using  Functions 
+// <------Menu-Driven Program using  Functions----->
 
-// Structure
+// <-------------------Structure------------------>
 typedef struct {
     char name[50];
     float price;
@@ -258,16 +260,16 @@ void foodItemMorning()
 void drinksMenu(int choice)
 {
 
-    if (choice == 1)
-    {
+    if (choice == 0){
+        return;
+    }
+    if (choice == 1){
         hotDrink();
     }
-    else if (choice == 2)
-    {
+    else if (choice == 2){
         coldDrink();
     }
-    else
-    {
+    else{
         printf("Invalid drink choice!\n");
     }
 }
