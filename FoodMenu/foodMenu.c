@@ -3,7 +3,7 @@
 #include <windows.h>  // Windows
 // Sleep(1000);
 
-// <------Menu-Driven Program using  Functions----->
+// <------Menu-Driven Program using  Functions-----> 
 
 // <-------------------Structure------------------>
 typedef struct {
@@ -79,13 +79,11 @@ int main()
             break;
 
         case 2:
-            displayFoodMenu();
+            orderHistory();
             break;
-
         case 3:
-            printf("\nNo order history available.\n");
+            orderHistory();
             break;
-
         case 4:
             printf("\nThank you! Program exited successfully.\n");
             return 0;
@@ -149,11 +147,11 @@ void displayMainMenu()
     spaceTab(5);
     line();
     spaceTab(6);
-    printf("1. Time Greeting Menu\n");
+    printf("1. Display Food Menu\n");
     spaceTab(6);
-    printf("2. Display Food Menu\n");
+    printf("2. Order History\n");
     spaceTab(6);
-    printf("3. Order History\n");
+    printf("3. Drinks Menu\n");
     spaceTab(6);
     printf("4. Exit\n");
     spaceTab(5);
@@ -171,16 +169,7 @@ void displayTimeMenu()
     smallLine();
 }
 
-void displayFoodMenu()
-{
-    smallLine();
-    printf("\t\t\tFOOD MENU\n");
-    smallLine();
-    printf("Breakfast\n");
-    printf("Lunch\n");
-    printf("Dinner\n");
-    smallLine();
-}
+
 
 /* ---------- LOGIC FUNCTIONS ---------- */
 void getUserTime()
@@ -319,6 +308,7 @@ void orderChai(Drink chai[], int count){
     int selectChai;
     printf("Select a chai: ");
     scanf("%d", &selectChai);
+    clearScreen();
 
     if (selectChai < 1 || selectChai > count){
         printf("Invalid choice!\n");
@@ -357,6 +347,7 @@ void orderCoffee(Drink coffee[], int count){
     int selectCoffee;
     printf("Select a Coffee: ");
     scanf("%d", &selectCoffee);
+    clearScreen();
 
     if(selectCoffee < 1 || selectCoffee > count){
         printf("Invalid choice!\n");
@@ -441,6 +432,7 @@ void orderCola(Drink cola[], int count){
     int selectCola;
      printf("Select Cola: ");
     scanf("%d", &selectCola);
+    clearScreen();
 
     if(selectCola < 1 || selectCola > count){
         printf("Invalid choice!\n");
