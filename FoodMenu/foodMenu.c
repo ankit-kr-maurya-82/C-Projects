@@ -35,7 +35,7 @@ void orderCoffee(Drink coffee[], int count);
 void coldDrink();
 void CarbonatedDrinksList(); // Carbonated Drinks
 void ColaList(); // Cola
-void orderCola(char *colaDrinkItem[], float priceList[], int itemList);
+void orderCola(Drink cola[], int count);
 void LemonLimeList();
 // Fruit Flavored
 void FruitFlavoredList();
@@ -378,42 +378,35 @@ void CarbonatedDrinksList(){
 
 // Cola 
 void ColaList() {
-    char *colaDrinkItem[] = {
-        "Coca-Cola",
-        "Pepsi",
-        "Thums Up",
-        "Diet Coke"
-    };
+    Drink cola[] = {{"Coca-Cola", 15.3},{"Pepsi", 14.76},{"Thums Up", 45.94},{"Diet Coke"}, 50.83};
 
-    float priceList[] = {15.3, 14.76, 45.94, 50.83};
 
-    int itemList = sizeof(colaDrinkItem) / sizeof(colaDrinkItem[0]);
+    int count = sizeof(cola) / sizeof(cola[0]);
 
     dotLine();
     spaceTab(4);
     printf("COLA MENU\n");
     dotLine();
 
-    for (int i = 0; i < itemList; i++) {
-        spaceTab(3);
-        printf("%d. %-12s Rs %.2f/-\n",
-               i + 1, colaDrinkItem[i], priceList[i]);
+     for (int i = 0; i < count; i++){
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, cola[i], cola[i]);
     }
 
-    orderCola(colaDrinkItem,priceList,itemList);
+    orderCola(cola,count);
 }
 
-void orderCola(char *colaDrinkItem[], float priceList[], int itemList){
+void orderCola(Drink cola[], int count){
     int selectCola;
      printf("Select Cola: ");
     scanf("%d", &selectCola);
 
-    if(selectCola < 1 || selectCola > itemList){
+    if(selectCola < 1 || selectCola > count){
         printf("Invalid choice!\n");
         return;
     }
 
-    PriceCalculator(colaDrinkItem, priceList, selectCola);
+    PriceCalculator(cola, selectCola);
 }
 
 // LemonLine
