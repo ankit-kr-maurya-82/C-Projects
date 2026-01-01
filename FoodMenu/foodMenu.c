@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>  // Windows
+#include <stdlib.h>
+
 // Sleep(1000);
 
 
@@ -24,6 +26,32 @@ typedef struct{
 
 Order orderHistory[MAX_ORDERS];
 int orderCount = 0;
+
+
+// file handling
+#define ORDER_FILE "order.dat"
+void saveOrdersToFile() {
+    FILE *fp = fopen(ORDER_FILE, "wb");
+    if (!fp) return;
+
+    fwrite(&orderCount, sizeof(int), 1, fp);
+    fwrite(orderHistory, sizeof(Order), orderCount, fp);
+    fclose(fp);
+}
+
+
+void loadOrdersFromFile() {
+    FILE *fp = fopen(ORDER_FILE, "rb");
+    if (!fp) return;
+
+    fread(&orderCount, sizeof(int), 1, fp);
+    fread(orderHistory, sizeof(Order), orderCount, fp);
+    fclose(fp);
+}
+
+
+
+
 
 void showOrderHistory();
 
@@ -79,8 +107,11 @@ void displayDrinksMenu(){
 
 }
 
+// breakfast
 void breakfastMenu(int choice);
-
+void sandwich();
+void burger();
+void omlet();
 
 /* ---------- MAIN FUNCTION ---------- */
 int main()
@@ -109,6 +140,8 @@ int main()
             displayDrinksMenu();
             break;
         case 4:
+            saveOrdersToFile();  
+
             printf("\nThank you! Program exited successfully.\n");
             return 0;
 
@@ -334,7 +367,7 @@ void breakfastMenu(int choice){
     }else if(choice == 1){
         sandwich();
     }else if(choice == 2){
-        Burger();
+        burger();
     }else if(choice == 3){
         omlet();
     }else{
@@ -342,26 +375,33 @@ void breakfastMenu(int choice){
     }
 }
 
+void sandwich(){
+    printf("sandwich coming soon...............\n");
+}
+
+void burger(){
+    printf("burger coming soon...............\n");
+}
+
+void omlet(){
+    printf("omlet coming soon...............\n");
+}
+
 /* ---------- DRINKS FUNCTION ---------- */
-void drinksMenu(int choice)
-{
+void drinksMenu(int choice){
 
     if (choice == 0){
         return;
-    }
-    if (choice == 1){
+    }else if (choice == 1){
         hotDrink();
-    }
-    else if (choice == 2){
+    }else if (choice == 2){
         coldDrink();
-    }
-    else{
+    }else{
         printf("Invalid drink choice!\n");
     }
 }
 
-void hotDrink()
-{
+void hotDrink(){
     smallLine();
     printf("     LIST OF HOT DRINKS\n");
     dotLine();
@@ -540,10 +580,18 @@ void orderCola(Drink cola[], int count){
 }
 
 // LemonLine
-void LemonLimeList(){}
+void LemonLimeList(){
+    printf("LemonLime coming soon...............\n");
+}
 // Fruit Flavored
-void FruitFlavoredList(){}
+void FruitFlavoredList(){
+    printf("Fruit Flavored coming soon...............\n");
+}
 // Ginger ALe
-void GingerAleList(){}
+void GingerAleList(){
+    printf("Ginger Ale coming soon...............\n");
+}
 // Sparkling Water
-void SparklingWaterList(){}
+void SparklingWaterList(){
+    printf("Sparkling Water coming soon...............\n");
+}
