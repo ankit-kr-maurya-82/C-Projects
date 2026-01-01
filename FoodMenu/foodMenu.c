@@ -12,6 +12,21 @@ typedef struct {
 } Drink;
 
 
+#define MAX_ORDERS 100
+
+typedef struct{
+    char name[30];
+    float price;
+    int qty;
+    float total;
+} Order;
+
+Order orderHistory[MAX_ORDERS];
+int orderCount = 0;
+
+void showOrderHistory();
+
+
 // All functions
 
 
@@ -57,10 +72,8 @@ void FruitFlavoredList();
 void GingerAleList();
 // Sparkling Water
 void SparklingWaterList();
-void orderHistory() {
-    printf("Order history feature coming soon...\n");
-}
-displayDrinksMenu(){
+void showOrderHistory();
+void displayDrinksMenu(){
     printf("display drinks feature coming soon...\n");
 
 }
@@ -87,7 +100,7 @@ int main()
             break;
 
         case 2:
-            orderHistory();
+            showOrderHistory();
             break;
         case 3:
             displayDrinksMenu();
@@ -101,6 +114,8 @@ int main()
         }
     }
 }
+
+
 
 /* ---------- DESIGN FUNCTIONS ---------- */
 void line()
@@ -128,6 +143,38 @@ void spaceTab(int num){
 }
 
 
+void showOrderHistory(){
+    clearScreen();
+    smallLine();
+    printf("ORDER HISTORY\n");
+    smallLine();
+
+    if(orderCount == 0){
+        printf("No orders placed yet.\n");
+        return;
+    }
+
+    float grandTotal = 0;
+
+    for(int i = 0; i < orderCount; i++){
+        printf("%d. %s\n", i + 1, orderHistory[i].name);
+        printf("   Price : %.2f\n", orderHistory[i].price);
+        printf("   Qty   : %d\n", orderHistory[i].qty);
+        printf("   Total : %.2f\n", orderHistory[i].total);
+        printf("---------------------------------\n");
+
+        grandTotal += orderHistory[i].total;
+    }
+
+    printf("GRAND TOTAL: %.2f\n", grandTotal);
+
+    printf("\nPress Enter to go back...");
+    getchar();
+    getchar();
+    clearScreen();
+}
+
+
 void PriceCalculator(Drink items[], int choice) {
     int qty;
     float totalAmount;
@@ -137,13 +184,28 @@ void PriceCalculator(Drink items[], int choice) {
 
     totalAmount = qty * items[choice - 1].price;
 
+    // ✅ SAVE ORDER HISTORY
+    if (orderCount < MAX_ORDERS) {
+        strcpy(orderHistory[orderCount].name, items[choice - 1].name);
+        orderHistory[orderCount].price = items[choice - 1].price;
+        orderHistory[orderCount].qty = qty;
+        orderHistory[orderCount].total = totalAmount;
+        orderCount++;
+    }
+
     dotLine();
     printf("Item  : %s\n", items[choice - 1].name);
     printf("Price : %.2f\n", items[choice - 1].price);
     printf("Qty   : %d\n", qty);
     printf("Total : %.2f/-\n", totalAmount);
     dotLine();
+
+    printf("Press Enter to continue...");
+    getchar();
+    getchar();
+    clearScreen();
 }
+
 
 /* ---------- MENU DISPLAY FUNCTIONS ---------- */
 void displayMainMenu()
@@ -217,8 +279,7 @@ void foodItemMorning()
     printf("          MORNING FOOD MENU\n");
     smallLine();
     printf("1. Drinks\n");
-    printf("2. Snacks\n");
-    printf("3. Breakfast\n");
+    printf("2. Breakfast\n");
     smallLine();
 
     printf("Select item: ");
@@ -244,19 +305,21 @@ void foodItemMorning()
         drinksMenu(drinkChoice);
     }
     else if (choice == 2){
-        printf("\nSnacks coming soon...\n");
-    }
-    else if (choice == 3){
+        int breakfastChoice;
         clearScreen();
         smallLine();
         printf("\n          Breakfast\n");
-        printf("1. Sandwich");
-        printf("1. Sandwich");
-        printf("1. Sandwich");
+        smallLine();
+        printf("1. Sandwich\n");
+        printf("2. Burger\n");
+        printf("3. Omlet\n");
+        smallLine();
 
-    }
-    else
-    {
+        printf("Select Breakfast: ");
+        scanf("%d", &breakfastChoice);
+        clearScreen();
+
+    }else{
         printf("\nInvalid item choice!\n");
     }
 }
