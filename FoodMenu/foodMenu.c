@@ -243,9 +243,17 @@ void foodItemMorning()
 
         drinksMenu(drinkChoice);
     }
-    else if (choice == 2)
-    {
+    else if (choice == 2){
         printf("\nSnacks coming soon...\n");
+    }
+    else if (choice == 3){
+        clearScreen();
+        smallLine();
+        printf("\n          Breakfast\n");
+        printf("1. Sandwich");
+        printf("1. Sandwich");
+        printf("1. Sandwich");
+
     }
     else
     {
