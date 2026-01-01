@@ -30,24 +30,32 @@ int orderCount = 0;
 
 // file handling
 #define ORDER_FILE "order.dat"
-void saveOrdersToFile() {
-    FILE *fp = fopen(ORDER_FILE, "wb");
-    if (!fp) return;
-
-    fwrite(&orderCount, sizeof(int), 1, fp);
-    fwrite(orderHistory, sizeof(Order), orderCount, fp);
+void saveOrderToFile(Order o) {
+    FILE *fp = fopen("orders.dat", "ab"); // append binary
+    if (fp == NULL) {
+        printf("Error opening file!\n");
+        return;
+    }
+    fwrite(&o, sizeof(Order), 1, fp);
     fclose(fp);
 }
+
 
 
 void loadOrdersFromFile() {
-    FILE *fp = fopen(ORDER_FILE, "rb");
+    FILE *fp = fopen("order.dat", "rb");
     if (!fp) return;
 
-    fread(&orderCount, sizeof(int), 1, fp);
-    fread(orderHistory, sizeof(Order), orderCount, fp);
+    Order o;
+    orderCount = 0;
+    while(fread(&o, sizeof(Order), 1, fp)) {
+        if(orderCount < MAX_ORDERS) {
+            orderHistory[orderCount++] = o;
+        }
+    }
     fclose(fp);
 }
+
 
 
 
@@ -116,6 +124,8 @@ void omlet();
 /* ---------- MAIN FUNCTION ---------- */
 int main()
 {
+    loadOrdersFromFile();  // Load old orders from file
+
     int userChoice;
 
     while (1)
@@ -140,8 +150,6 @@ int main()
             displayDrinksMenu();
             break;
         case 4:
-            saveOrdersToFile();  
-
             printf("\nThank you! Program exited successfully.\n");
             return 0;
 
@@ -150,6 +158,7 @@ int main()
         }
     }
 }
+
 
 
 
@@ -178,37 +187,44 @@ void spaceTab(int num){
     
 }
 
-
-void showOrderHistory(){
+void showOrderHistory() {
     clearScreen();
     smallLine();
     printf("ORDER HISTORY\n");
     smallLine();
 
-    if(orderCount == 0){
-        printf("No orders placed yet.\n");
+    FILE *fp = fopen("orders.dat", "rb");
+    if (fp == NULL) {
+        printf("No orders found.\n");
         return;
     }
 
+    Order o;
+    int count = 0;
     float grandTotal = 0;
-
-    for(int i = 0; i < orderCount; i++){
-        printf("%d. %s\n", i + 1, orderHistory[i].name);
-        printf("   Price : %.2f\n", orderHistory[i].price);
-        printf("   Qty   : %d\n", orderHistory[i].qty);
-        printf("   Total : %.2f\n", orderHistory[i].total);
+    while (fread(&o, sizeof(Order), 1, fp)) {
+        count++;
+        printf("%d. %s\n", count, o.name);
+        printf("   Price : %.2f\n", o.price);
+        printf("   Qty   : %d\n", o.qty);
+        printf("   Total : %.2f\n", o.total);
         printf("---------------------------------\n");
-
-        grandTotal += orderHistory[i].total;
+        grandTotal += o.total;
     }
+    fclose(fp);
 
-    printf("GRAND TOTAL: %.2f\n", grandTotal);
+    if(count == 0){
+        printf("No orders placed yet.\n");
+    } else {
+        printf("GRAND TOTAL: %.2f\n", grandTotal);
+    }
 
     printf("\nPress Enter to go back...");
     getchar();
     getchar();
     clearScreen();
 }
+
 
 
 void PriceCalculator(Drink items[], int choice) {
@@ -220,7 +236,7 @@ void PriceCalculator(Drink items[], int choice) {
 
     totalAmount = qty * items[choice - 1].price;
 
-    // ✅ SAVE ORDER HISTORY
+    // Save to memory (optional)
     if (orderCount < MAX_ORDERS) {
         strcpy(orderHistory[orderCount].name, items[choice - 1].name);
         orderHistory[orderCount].price = items[choice - 1].price;
@@ -228,6 +244,14 @@ void PriceCalculator(Drink items[], int choice) {
         orderHistory[orderCount].total = totalAmount;
         orderCount++;
     }
+
+    // Save to file
+    Order o;
+    strcpy(o.name, items[choice - 1].name);
+    o.price = items[choice - 1].price;
+    o.qty = qty;
+    o.total = totalAmount;
+    saveOrderToFile(o);
 
     dotLine();
     printf("Item  : %s\n", items[choice - 1].name);
