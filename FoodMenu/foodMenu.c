@@ -3,6 +3,7 @@
 #include <windows.h>  // Windows
 // Sleep(1000);
 
+
 // <------Menu-Driven Program using  Functions-----> 
 
 // <-------------------Structure------------------>
@@ -77,6 +78,8 @@ void displayDrinksMenu(){
     printf("display drinks feature coming soon...\n");
 
 }
+
+void breakfastMenu(int choice);
 
 
 /* ---------- MAIN FUNCTION ---------- */
@@ -301,7 +304,6 @@ void foodItemMorning()
         scanf("%d", &drinkChoice);
         clearScreen();
 
-
         drinksMenu(drinkChoice);
     }
     else if (choice == 2){
@@ -319,8 +321,24 @@ void foodItemMorning()
         scanf("%d", &breakfastChoice);
         clearScreen();
 
+        breakfastMenu(breakfastChoice);
     }else{
         printf("\nInvalid item choice!\n");
+    }
+}
+
+//  ------------- Breakfast Function --------
+void breakfastMenu(int choice){
+    if(choice == 0){
+        return;
+    }else if(choice == 1){
+        sandwich();
+    }else if(choice == 2){
+        Burger();
+    }else if(choice == 3){
+        omlet();
+    }else{
+        printf("Invalid breakfast choice!\n");
     }
 }
 
