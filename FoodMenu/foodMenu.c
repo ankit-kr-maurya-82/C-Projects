@@ -406,8 +406,8 @@ void sandwichList(){
     Food sandwish[] = {
         {},
         {},
-        {}
-    }
+        {},
+    };
 }
 
 void burgerList(){
