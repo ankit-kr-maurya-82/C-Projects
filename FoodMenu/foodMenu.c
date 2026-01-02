@@ -13,6 +13,10 @@ typedef struct {
     char name[50];
     float price;
 } Drink;
+typedef struct {
+    char name[50];
+    float price;
+} Food;
 
 
 #define MAX_ORDERS 100
@@ -84,7 +88,6 @@ void spaceTab(int num);
 
 void displayMainMenu();
 void displayTimeMenu();
-void displayFoodMenu();
 
 void getUserTime();
 void foodItemMorning();
@@ -94,7 +97,7 @@ void drinksMenu(int choice);
 // Hot Drinks
 void hotDrink();
 void TeaList();  // Tea
-void orderChai(Drink chai[], int count);
+void orderTea(Drink tea[], int count);
 void CoffeeList(); // Coffee
 void orderCoffee(Drink coffee[], int count);
 // Cold Drinks
@@ -117,9 +120,9 @@ void displayDrinksMenu(){
 
 // breakfast
 void breakfastMenu(int choice);
-void sandwich();
-void burger();
-void omlet();
+void sandwichList();
+void burgerList();
+void omletList();
 
 /* ---------- MAIN FUNCTION ---------- */
 int main()
@@ -389,25 +392,29 @@ void breakfastMenu(int choice){
     if(choice == 0){
         return;
     }else if(choice == 1){
-        sandwich();
+        sandwichList();
     }else if(choice == 2){
-        burger();
+        burgerList();
     }else if(choice == 3){
-        omlet();
+        omletList();
     }else{
         printf("Invalid breakfast choice!\n");
     }
 }
 
-void sandwich(){
-    printf("sandwich coming soon...............\n");
+void sandwichList(){
+    Food sandwish[] = {
+        {},
+        {},
+        {}
+    }
 }
 
-void burger(){
+void burgerList(){
     printf("burger coming soon...............\n");
 }
 
-void omlet(){
+void omletList(){
     printf("omlet coming soon...............\n");
 }
 
@@ -429,7 +436,7 @@ void hotDrink(){
     smallLine();
     printf("     LIST OF HOT DRINKS\n");
     dotLine();
-    char hotDrinkList[2][20] = {"Chai", "Coffee"};
+    char hotDrinkList[2][20] = {"Tea", "Coffee"};
 
     for (int i = 0; i < 2; i++){
         printf(" %d. %s\n", i + 1, hotDrinkList[i]);
@@ -446,37 +453,37 @@ void hotDrink(){
     }
 }
 void TeaList(){
-    Drink chai[] = {
-        {"Masala chai", 10},
-        {"Adarak chai", 40},
-        {"Nimbu chai", 15.5},
-        {"Elaichi chai", 10},
-        {"Cutting chai", 5}
+    Drink tea[] = {
+        {"Masala tea", 10},
+        {"Adarak tea", 40},
+        {"Nimbu tea", 15.5},
+        {"Elaichi tea", 10},
+        {"Cutting tea", 5}
     };
 
-    int count = sizeof(chai) / sizeof(chai[0]);
+    int count = sizeof(tea) / sizeof(tea[0]);
 
     for (int i = 0; i < count; i++){
         printf("%d. %s ___________________________ %.2f/-\n",
-               i + 1, chai[i].name, chai[i].price);
+               i + 1, tea[i].name, tea[i].price);
     }
 
-    orderChai(chai, count);
+    orderTea(tea, count);
 }
 
 
-void orderChai(Drink chai[], int count){
-    int selectChai;
-    printf("Select a chai: ");
-    scanf("%d", &selectChai);
+void orderTea(Drink tea[], int count){
+    int selectTea;
+    printf("Select a tea: ");
+    scanf("%d", &selectTea);
     clearScreen();
 
-    if (selectChai < 1 || selectChai > count){
+    if (selectTea < 1 || selectTea > count){
         printf("Invalid choice!\n");
         return;
     }
 
-       PriceCalculator(chai, selectChai);
+       PriceCalculator(tea, selectTea);
 
 }
 
