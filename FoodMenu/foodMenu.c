@@ -375,6 +375,7 @@ void foodItemMorning()
         printf("1. Sandwich\n");
         printf("2. Burger\n");
         printf("3. Omlet\n");
+        printf("4. Noodle\n");
         smallLine();
 
         printf("Select Breakfast: ");
@@ -403,15 +404,54 @@ void breakfastMenu(int choice){
 }
 
 void sandwichList(){
-    Food sandwish[] = {
-        {},
-        {},
-        {},
+    Food sandwich[] = {
+        {"layered Bombay Sandwich",36.54},
+        {"Paneer Tikka Sandwich", 87.43},
+        {"Aloo Tikki Sandwich", 36.93},
+        {"Veg Masala Sandwich", 54.62},
+        {"Chutney Sandwich", 32.64},
+        {"Chicken Tikka Sandwich", 96.64},
+        {"Egg Bhurji Sandwich", 94.24},
+        {"Keema Sandwich", 85.00},
+        {"Boiled Egg Sandwich", 87.90}
     };
+
+    int count = sizeof(sandwich) / sizeof(sandwich[0]);
+
+    for(int i=0; i<count; i++){
+         printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, sandwich[i].name, sandwich[i].price);
+    }
+
+    orderSandwich(sandwich, count);
 }
 
+void orderSandwich(Food sandwich[], int count){
+    int selectSandwich;
+    printf("Select a tea: ");
+    scanf("%d", &selectSandwich);
+    clearScreen();
+
+    if (selectSandwich < 1 || selectSandwich > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+
+       PriceCalculator(sandwich, selectSandwich);
+
+}
+
+
+
 void burgerList(){
-    printf("burger coming soon...............\n");
+    Food burger[] = {
+        {"Aloo Tikki Burger"},
+        {"Paneer Burger"},
+        {"Tandoori Chicken Burger"},
+        {"Veggie Burger"},
+        {""},
+        {""},
+    }
 }
 
 void omletList(){
@@ -456,9 +496,9 @@ void TeaList(){
     Drink tea[] = {
         {"Masala tea", 10},
         {"Adarak tea", 40},
-        {"Nimbu tea", 15.5},
-        {"Elaichi tea", 10},
-        {"Cutting tea", 5}
+        {"Nimbu tea", 15.57},
+        {"Elaichi tea", 10.39},
+        {"Green tea", 30.58}
     };
 
     int count = sizeof(tea) / sizeof(tea[0]);
