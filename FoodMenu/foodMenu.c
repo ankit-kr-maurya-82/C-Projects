@@ -517,15 +517,20 @@ void orderOmlet(Food omlet[], int count){
 
 void NoodleList(){
     Food noodle[] = {
-        {"layered Bombay Sandwich",36.54},
-        {"Paneer Tikka Sandwich", 87.43},
-        {"Aloo Tikki Sandwich", 36.93},
-        {"Veg Masala Sandwich", 54.62},
-        {"Chutney Sandwich", 32.64},
-        {"Chicken Tikka Sandwich", 96.64},
-        {"Egg Bhurji Sandwich", 94.24},
-        {"Keema Sandwich", 85.00},
-        {"Boiled Egg Sandwich", 87.90}
+        {"Maggi",36.54},
+        {"Sunfeast YiPPee!", 87.43},
+        {"Ching's Secret", 36.93},
+        {"Top Ramen", 54.62},
+        {"Knorr", 32.64},
+        {"Patanjali", 96.64},
+        {"Wai Wai", 94.24},
+        {"Hakka Noodles", 85.00},
+        {"Chowmein", 87.90},
+        {"Thukpa", 87.90},
+        {"Idiyappam", 87.90},
+        {"Seviyan (Vermicelli)", 87.90},
+        {"Chilli Garlic Noodles", 87.90},
+        {"Ramen", 87.90},
     };
 
     int count = sizeof(noodle) / sizeof(noodle[0]);
@@ -536,6 +541,22 @@ void NoodleList(){
     }
 
     orderNoodle(noodle, count);
+}
+
+
+void orderNoodle(Food noodle[], int count){
+    int selectItem;
+    printf("Select a burger: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if (selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+
+       PriceCalculator(noodle, selectItem);
+
 }
 
 
