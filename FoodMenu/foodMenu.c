@@ -498,6 +498,21 @@ void omletList(){
     orderOmlet(omlet, count);
 }
 
+void orderOmlet(Food omlet[], int count){
+    int selectItem;
+    printf("Select a burger: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if (selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+
+       PriceCalculator(omlet, selectItem);
+
+}
+
 /* ---------- DRINKS FUNCTION ---------- */
 void drinksMenu(int choice){
 
