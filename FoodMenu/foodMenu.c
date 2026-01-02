@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include <windows.h>  // Windows
+// #include <windows.h>  // Windows
 #include <stdlib.h>
 
 // Sleep(1000);
@@ -12,11 +12,8 @@
 typedef struct {
     char name[50];
     float price;
-} Drink;
-typedef struct {
-    char name[50];
-    float price;
-} Food;
+} Item;
+
 
 
 #define MAX_ORDERS 100
@@ -33,9 +30,9 @@ int orderCount = 0;
 
 
 // file handling
-#define ORDER_FILE "order.dat"
+#define ORDER_FILE "orders.dat"
 void saveOrderToFile(Order o) {
-    FILE *fp = fopen("orders.dat", "ab"); // append binary
+    FILE *fp = fopen(ORDER_FILE, "ab"); // append binary
     if (fp == NULL) {
         printf("Error opening file!\n");
         return;
@@ -47,7 +44,7 @@ void saveOrderToFile(Order o) {
 
 
 void loadOrdersFromFile() {
-    FILE *fp = fopen("order.dat", "rb");
+    FILE *fp = fopen(ORDER_FILE, "rb");
     if (!fp) return;
 
     Order o;
@@ -92,19 +89,19 @@ void displayTimeMenu();
 void getUserTime();
 void foodItemMorning();
 // Calculator
-void PriceCalculator(Drink items[], int choice);
+void PriceCalculator(Item items[], int choice);
 void drinksMenu(int choice);
 // Hot Drinks
 void hotDrink();
 void TeaList();  // Tea
-void orderTea(Drink tea[], int count);
+void orderTea(Item tea[], int count);
 void CoffeeList(); // Coffee
-void orderCoffee(Drink coffee[], int count);
+void orderCoffee(Item coffee[], int count);
 // Cold Drinks
 void coldDrink();
 void CarbonatedDrinksList(); // Carbonated Drinks
 void ColaList(); // Cola
-void orderCola(Drink cola[], int count);
+void orderCola(Item cola[], int count);
 void LemonLimeList();
 // Fruit Flavored
 void FruitFlavoredList();
@@ -123,6 +120,14 @@ void breakfastMenu(int choice);
 void sandwichList();
 void burgerList();
 void omletList();
+void noodleList();
+
+
+void orderSandwich(Item[], int);
+void orderBurger(Item[], int);
+void orderOmlet(Item[], int);
+void orderNoodle(Item[], int);
+
 
 /* ---------- MAIN FUNCTION ---------- */
 int main()
@@ -230,7 +235,7 @@ void showOrderHistory() {
 
 
 
-void PriceCalculator(Drink items[], int choice) {
+void PriceCalculator(Item items[], int choice) {
     int qty;
     float totalAmount;
 
@@ -398,13 +403,15 @@ void breakfastMenu(int choice){
         burgerList();
     }else if(choice == 3){
         omletList();
+    }else if(choice == 4){
+        noodleList();
     }else{
         printf("Invalid breakfast choice!\n");
     }
 }
 
 void sandwichList(){
-    Food sandwich[] = {
+    Item sandwich[] = {
         {"layered Bombay Sandwich",36.54},
         {"Paneer Tikka Sandwich", 87.43},
         {"Aloo Tikki Sandwich", 36.93},
@@ -426,7 +433,7 @@ void sandwichList(){
     orderSandwich(sandwich, count);
 }
 
-void orderSandwich(Food sandwich[], int count){
+void orderSandwich(Item sandwich[], int count){
     int selectItem;
     printf("Select a sandwich: ");
     scanf("%d", &selectItem);
@@ -444,7 +451,7 @@ void orderSandwich(Food sandwich[], int count){
 
 
 void burgerList(){
-    Food burger[] = {
+    Item burger[] = {
         {"Aloo Tikki Burger", 169.75},
         {"Paneer Burger", 149.84},
         {"Tandoori Chicken Burger", 329.74},
@@ -463,7 +470,7 @@ void burgerList(){
 
 }
 
-void orderBurger(Food burger[], int count){
+void orderBurger(Item burger[], int count){
     int selectItem;
     printf("Select a burger: ");
     scanf("%d", &selectItem);
@@ -479,7 +486,7 @@ void orderBurger(Food burger[], int count){
 }
 
 void omletList(){
-    Food omlet[] = {
+    Item omlet[] = {
         {"Masala Omelette", 374.75},
         {"Bread Omelette", 346.84},
         {"Tandoori Omelette", 214.74},
@@ -498,7 +505,7 @@ void omletList(){
     orderOmlet(omlet, count);
 }
 
-void orderOmlet(Food omlet[], int count){
+void orderOmlet(Item omlet[], int count){
     int selectItem;
     printf("Select a burger: ");
     scanf("%d", &selectItem);
@@ -515,8 +522,8 @@ void orderOmlet(Food omlet[], int count){
 
 
 
-void NoodleList(){
-    Food noodle[] = {
+void noodleList(){
+    Item noodle[] = {
         {"Maggi",36.54},
         {"Sunfeast YiPPee!", 87.43},
         {"Ching's Secret", 36.93},
@@ -544,7 +551,7 @@ void NoodleList(){
 }
 
 
-void orderNoodle(Food noodle[], int count){
+void orderNoodle(Item noodle[], int count){
     int selectItem;
     printf("Select a burger: ");
     scanf("%d", &selectItem);
@@ -595,7 +602,7 @@ void hotDrink(){
     }
 }
 void TeaList(){
-    Drink tea[] = {
+    Item tea[] = {
         {"Masala tea", 10},
         {"Adarak tea", 40},
         {"Nimbu tea", 15.57},
@@ -614,7 +621,7 @@ void TeaList(){
 }
 
 
-void orderTea(Drink tea[], int count){
+void orderTea(Item tea[], int count){
     int selectTea;
     printf("Select a tea: ");
     scanf("%d", &selectTea);
@@ -630,7 +637,7 @@ void orderTea(Drink tea[], int count){
 }
 
 void CoffeeList(){
-    Drink coffee[] = {
+    Item coffee[] = {
         {"Black Coffee", 20},
         {"Cold Coffee", 30},
         {"Espresso Coffee", 50},
@@ -653,7 +660,7 @@ void CoffeeList(){
 
 
 
-void orderCoffee(Drink coffee[], int count){
+void orderCoffee(Item coffee[], int count){
     int selectItem;
     printf("Select a Coffee: ");
     scanf("%d", &selectItem);
@@ -715,7 +722,7 @@ void CarbonatedDrinksList(){
 
 // Cola 
 void ColaList() {
-    Drink cola[] = {
+    Item cola[] = {
         {"Coca-Cola", 15.3},
         {"Pepsi", 14.76},
         {"Thums Up", 45.94},
@@ -738,7 +745,7 @@ void ColaList() {
 }
 
 
-void orderCola(Drink cola[], int count){
+void orderCola(Item cola[], int count){
     int selectItem;
      printf("Select Cola: ");
     scanf("%d", &selectItem);
