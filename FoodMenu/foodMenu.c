@@ -513,6 +513,32 @@ void orderOmlet(Food omlet[], int count){
 
 }
 
+
+
+void NoodleList(){
+    Food noodle[] = {
+        {"layered Bombay Sandwich",36.54},
+        {"Paneer Tikka Sandwich", 87.43},
+        {"Aloo Tikki Sandwich", 36.93},
+        {"Veg Masala Sandwich", 54.62},
+        {"Chutney Sandwich", 32.64},
+        {"Chicken Tikka Sandwich", 96.64},
+        {"Egg Bhurji Sandwich", 94.24},
+        {"Keema Sandwich", 85.00},
+        {"Boiled Egg Sandwich", 87.90}
+    };
+
+    int count = sizeof(noodle) / sizeof(noodle[0]);
+
+    for(int i=0; i<count; i++){
+         printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, noodle[i].name, noodle[i].price);
+    }
+
+    orderNoodle(noodle, count);
+}
+
+
 /* ---------- DRINKS FUNCTION ---------- */
 void drinksMenu(int choice){
 
