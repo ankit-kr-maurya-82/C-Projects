@@ -427,17 +427,17 @@ void sandwichList(){
 }
 
 void orderSandwich(Food sandwich[], int count){
-    int selectSandwich;
-    printf("Select a tea: ");
-    scanf("%d", &selectSandwich);
+    int selectItem;
+    printf("Select a sandwich: ");
+    scanf("%d", &selectItem);
     clearScreen();
 
-    if (selectSandwich < 1 || selectSandwich > count){
+    if (selectItem < 1 || selectItem > count){
         printf("Invalid choice!\n");
         return;
     }
 
-       PriceCalculator(sandwich, selectSandwich);
+       PriceCalculator(sandwich, selectItem);
 
 }
 
@@ -445,17 +445,57 @@ void orderSandwich(Food sandwich[], int count){
 
 void burgerList(){
     Food burger[] = {
-        {"Aloo Tikki Burger"},
-        {"Paneer Burger"},
-        {"Tandoori Chicken Burger"},
-        {"Veggie Burger"},
-        {""},
-        {""},
+        {"Aloo Tikki Burger", 169.75},
+        {"Paneer Burger", 149.84},
+        {"Tandoori Chicken Burger", 329.74},
+        {"Veggie Burger",132.85},
+        {"Chicken Burger", 247.84},
+        {"Mutton/Lamb Burger", 549.35},
+        {"Zinger Burger",549.73}
+    };
+    int count = sizeof(burger) / sizeof(burger[0]);
+
+    for(int i=0; i<count; i++){
+         printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, burger[i].name, burger[i].price);
     }
+    orderBurger(burger, count);
+
+}
+
+void orderBurger(Food burger[], int count){
+    int selectItem;
+    printf("Select a burger: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if (selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+
+       PriceCalculator(burger, selectItem);
+
 }
 
 void omletList(){
-    printf("omlet coming soon...............\n");
+    Food omlet[] = {
+        {"Masala Omelette", 374.75},
+        {"Bread Omelette", 346.84},
+        {"Tandoori Omelette", 214.74},
+        {"Cheese Omelette",325.85},
+        {"Paneer Omelette", 435.84},
+        {"Mushroom Omelette", 453.35},
+        {"Spinach Omelette",435.73},
+        {"Chapati Omelette Roll",465.73}
+    };
+    int count = sizeof(omlet) / sizeof(omlet[0]);
+
+    for(int i=0; i<count; i++){
+         printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, omlet[i].name, omlet[i].price);
+    }
+    orderOmlet(omlet, count);
 }
 
 /* ---------- DRINKS FUNCTION ---------- */
@@ -552,17 +592,17 @@ void CoffeeList(){
 
 
 void orderCoffee(Drink coffee[], int count){
-    int selectCoffee;
+    int selectItem;
     printf("Select a Coffee: ");
-    scanf("%d", &selectCoffee);
+    scanf("%d", &selectItem);
     clearScreen();
 
-    if(selectCoffee < 1 || selectCoffee > count){
+    if(selectItem < 1 || selectItem > count){
         printf("Invalid choice!\n");
         return;
     }
 
-    PriceCalculator(coffee, selectCoffee);
+    PriceCalculator(coffee, selectItem);
 }
 
 
@@ -637,17 +677,17 @@ void ColaList() {
 
 
 void orderCola(Drink cola[], int count){
-    int selectCola;
+    int selectItem;
      printf("Select Cola: ");
-    scanf("%d", &selectCola);
+    scanf("%d", &selectItem);
     clearScreen();
 
-    if(selectCola < 1 || selectCola > count){
+    if(selectItem < 1 || selectItem > count){
         printf("Invalid choice!\n");
         return;
     }
 
-    PriceCalculator(cola, selectCola);
+    PriceCalculator(cola, selectItem);
 }
 
 // LemonLine
