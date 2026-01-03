@@ -780,6 +780,7 @@ void ColaList() {
 }
 
 
+
 void orderCola(Item cola[], int count){
     int selectItem;
      printf("Select Cola: ");
@@ -809,12 +810,22 @@ void LemonLimeList(){
         printf("%d. %s ___________________________ %.2f/-\n",
                i + 1, lemonLime[i].name, lemonLime[i].price);
     }
-
-        
-    orderTea(lemonLime, count);
-
+    orderLemonLime(lemonLime, count);
+}
 
 
+void orderLemonLime(Item orderLemonLime[], int count){
+    int selectItem;
+     printf("Select orderLemonLime: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if(selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+
+    PriceCalculator(orderLemonLime, selectItem, "orderLemonLime");
 }
 // Fruit Flavored
 void FruitFlavoredList(){
@@ -830,7 +841,21 @@ void FruitFlavoredList(){
                i + 1, fruitFlavored[i].name, fruitFlavored[i].price);
     }
 
-    orderI(fruitFlavored, count);
+    orderfruitFlavored(fruitFlavored, count);
+}
+
+void orderfruitFlavored(Item fruitFlavored[], int count){
+    int selectItem;
+     printf("Select orderfruitFlavored: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if(selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+
+    PriceCalculator(fruitFlavored, selectItem, "OrderfruitFlavored");
 }
 // Ginger ALe
 void GingerAleList(){
@@ -845,10 +870,22 @@ void GingerAleList(){
                i + 1, gingerAle[i].name, gingerAle[i].price);
     }
 
-        orderGingerAle(gingerAle, count);
-
-
+    orderGingerAle(gingerAle, count);
 }
+void orderGingerAle(Item gingerAle[], int count){
+    int selectItem;
+     printf("Select gingerAle: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if(selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+
+    PriceCalculator(gingerAle, selectItem, "GingerAle");
+}
+
 // Sparkling Water
 void SparklingWaterList(){
     Item sparklingWater[] = {
@@ -861,7 +898,21 @@ void SparklingWaterList(){
         printf("%d. %s ___________________________ %.2f/-\n",
                i + 1, sparklingWater[i].name, sparklingWater[i].price);
     }
-        orderSparklingWater(sparklingWater, count);
+    orderSparklingWater(sparklingWater, count);
+
+}
 
 
+void orderSparklingWater(Item sparklingWater[], int count){
+    int selectItem;
+     printf("Select sparklingWater: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if(selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+
+    PriceCalculator(sparklingWater, selectItem, "SparklingWater");
 }
