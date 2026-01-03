@@ -2,6 +2,7 @@
 #include <string.h>
 // #include <windows.h>  // Windows
 #include <stdlib.h>
+#include <math.h>
 
 // Sleep(1000);
 
@@ -19,7 +20,7 @@ typedef struct {
 #define MAX_ORDERS 100
 
 typedef struct{
-    char name[30];
+    char name[50];
     float price;
     int qty;
     float total;
@@ -37,7 +38,11 @@ void saveOrderToFile(Order o) {
         printf("Error opening file!\n");
         return;
     }
-    fwrite(&o, sizeof(Order), 1, fp);
+    o.name[sizeof(o.name)-1] = '\0';
+    size_t written = fwrite(&o, sizeof(Order), 1, fp);
+    if (written != 1) {
+        printf("Error writing order to file.\n");
+    }
     fclose(fp);
 }
 
@@ -49,12 +54,41 @@ void loadOrdersFromFile() {
 
     Order o;
     orderCount = 0;
-    while(fread(&o, sizeof(Order), 1, fp)) {
-        if(orderCount < MAX_ORDERS) {
-            orderHistory[orderCount++] = o;
+    // read all orders and keep only valid ones
+    Order validOrders[MAX_ORDERS];
+    int validCount = 0;
+    int corrupted = 0;
+    while (fread(&o, sizeof(Order), 1, fp) == 1) {
+        o.name[sizeof(o.name)-1] = '\0';
+        int qty_ok = (o.qty > 0 && o.qty <= 10000);
+        int price_ok = isfinite(o.price) && o.price > 0.0f && o.price < 100000.0f;
+        int total_ok = isfinite(o.total) && o.total >= 0.0f;
+        float expected_total = o.price * (float)o.qty;
+        int total_matches = fabsf(o.total - expected_total) <= fmaxf(1.0f, 0.01f * fabsf(expected_total));
+
+        if (qty_ok && price_ok && total_ok && total_matches) {
+            if (validCount < MAX_ORDERS) validOrders[validCount++] = o;
+        } else {
+            corrupted = 1;
         }
     }
     fclose(fp);
+
+    // populate in-memory history
+    for (int i = 0; i < validCount && i < MAX_ORDERS; ++i) {
+        orderHistory[orderCount++] = validOrders[i];
+    }
+
+    // if corruption detected, rewrite file with only valid orders
+    if (corrupted) {
+        FILE *wf = fopen(ORDER_FILE, "wb");
+        if (wf) {
+            for (int i = 0; i < validCount; ++i) {
+                fwrite(&validOrders[i], sizeof(Order), 1, wf);
+            }
+            fclose(wf);
+        }
+    }
 }
 
 
@@ -201,29 +235,19 @@ void showOrderHistory() {
     printf("ORDER HISTORY\n");
     smallLine();
 
-    FILE *fp = fopen("orders.dat", "rb");
-    if (fp == NULL) {
-        printf("No orders found.\n");
-        return;
-    }
-
-    Order o;
-    int count = 0;
-    float grandTotal = 0;
-    while (fread(&o, sizeof(Order), 1, fp)) {
-        count++;
-        printf("%d. %s\n", count, o.name);
-        printf("   Price : %.2f\n", o.price);
-        printf("   Qty   : %d\n", o.qty);
-        printf("   Total : %.2f\n", o.total);
-        printf("---------------------------------\n");
-        grandTotal += o.total;
-    }
-    fclose(fp);
-
-    if(count == 0){
+    if (orderCount == 0) {
         printf("No orders placed yet.\n");
     } else {
+        float grandTotal = 0.0f;
+        for (int i = 0; i < orderCount; ++i) {
+            Order *o = &orderHistory[i];
+            printf("%d. %s\n", i + 1, o->name);
+            printf("   Price : %.2f\n", o->price);
+            printf("   Qty   : %d\n", o->qty);
+            printf("   Total : %.2f\n", o->total);
+            printf("---------------------------------\n");
+            grandTotal += o->total;
+        }
         printf("GRAND TOTAL: %.2f\n", grandTotal);
     }
 
@@ -255,7 +279,8 @@ void PriceCalculator(Item items[], int choice) {
 
     // Save to file
     Order o;
-    strcpy(o.name, items[choice - 1].name);
+    strncpy(o.name, items[choice - 1].name, sizeof(o.name)-1);
+    o.name[sizeof(o.name)-1] = '\0';
     o.price = items[choice - 1].price;
     o.qty = qty;
     o.total = totalAmount;
