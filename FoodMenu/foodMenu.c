@@ -229,6 +229,7 @@ void spaceTab(int num){
     }
     
 }
+
 void showOrderHistory() {
     clearScreen();
     smallLine();
@@ -243,7 +244,8 @@ void showOrderHistory() {
         for (int i = 0; i < orderCount; ++i) {
             Order *o = &orderHistory[i];
 
-            printf("%d. [%s] %s\n", i + 1, o->category, o->name);
+             printf("%d. Category : %s\n", i + 1, o->category);
+            printf("   Item  : %s\n", o->name);
             printf("   Price : %.2f\n", o->price);
             printf("   Qty   : %d\n", o->qty);
             printf("   Total : %.2f\n", o->total);
@@ -275,6 +277,7 @@ void PriceCalculator(Item items[], int choice, const char *category) {
 
     // Save to memory (optional)
     if (orderCount < MAX_ORDERS) {
+        strcpy(orderHistory[orderCount].category, category);
         strcpy(orderHistory[orderCount].name, items[choice - 1].name);
         orderHistory[orderCount].price = items[choice - 1].price;
         orderHistory[orderCount].qty = qty;
@@ -293,6 +296,7 @@ void PriceCalculator(Item items[], int choice, const char *category) {
     saveOrderToFile(o);
 
     dotLine();
+    printf("Category  : %s\n", category);
     printf("Item  : %s\n", items[choice - 1].name);
     printf("Price : %.2f\n", items[choice - 1].price);
     printf("Qty   : %d\n", qty);
