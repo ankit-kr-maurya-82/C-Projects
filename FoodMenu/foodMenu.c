@@ -162,6 +162,10 @@ void orderSandwich(Item[], int);
 void orderBurger(Item[], int);
 void orderOmlet(Item[], int);
 void orderNoodle(Item[], int);
+void orderLemonLime(Item[], int);
+void orderfruitFlavored(Item[], int);
+void orderGingerAle(Item[], int);
+void orderSparklingWater(Item[], int);
 
 
 /* ---------- MAIN FUNCTION ---------- */
@@ -542,7 +546,7 @@ void omletList(){
 
 void orderOmlet(Item omlet[], int count){
     int selectItem;
-    printf("Select a burger: ");
+    printf("Select a omlet: ");
     scanf("%d", &selectItem);
     clearScreen();
 
@@ -588,7 +592,7 @@ void noodleList(){
 
 void orderNoodle(Item noodle[], int count){
     int selectItem;
-    printf("Select a burger: ");
+    printf("Select a noodle: ");
     scanf("%d", &selectItem);
     clearScreen();
 
