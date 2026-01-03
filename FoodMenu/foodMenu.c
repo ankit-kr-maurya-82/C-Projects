@@ -132,8 +132,8 @@ void TeaList();  // Tea
 void orderTea(Item tea[], int count);
 void CoffeeList(); // Coffee
 void orderCoffee(Item coffee[], int count);
-// Cold Drinks
-void coldDrink();
+// Mini Cold Drinks
+void miniColdDrink();
 void CarbonatedDrinksList(); // Carbonated Drinks
 void ColaList(); // Cola
 void orderCola(Item cola[], int count);
@@ -622,14 +622,11 @@ void displayDrinksMenu(){
         case 1:
             hotDrink();
             break;
-
         case 2:
             coldDrink();
             break;
-
         case 0:
             return;  
-
         default:
             printf("Invalid choice!\n");
         }
@@ -643,7 +640,7 @@ void drinksMenu(int choice){
     }else if (choice == 1){
         hotDrink();
     }else if (choice == 2){
-        coldDrink();
+        miniColdDrink();
     }else{
         printf("Invalid drink choice!\n");
     }
@@ -748,6 +745,26 @@ void coldDrink(){
     printf("LIST IF COLD DRINKS\n");
     dotLine();
     char coldDrinkList[5][100] = {"Carbonated Drinks", "Non-Carbonated Drinks", "Traditional & Herbal Drinks", "Energy Drinks", "Iced Tea & Coffee"};
+    for(int i=0;i<5;i++){
+        printf(" %d. %s\n", i+1, coldDrinkList[i]);
+    }
+
+    int selectedItem;
+    printf("Choice your cold drink: ");
+    scanf("%d",&selectedItem);
+
+    if(selectedItem == 0){
+        return;
+    }else if(selectedItem == 1){
+        CarbonatedDrinksList();
+    }
+}
+// Mini Cold Drink
+void miniColdDrink(){
+    smallLine();
+    printf("LIST IF COLD DRINKS\n");
+    dotLine();
+    char coldDrinkList[2][100] = {"Carbonated Drinks", "Non-Carbonated Drinks"};
     for(int i=0;i<5;i++){
         printf(" %d. %s\n", i+1, coldDrinkList[i]);
     }
