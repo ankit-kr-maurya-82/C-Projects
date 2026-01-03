@@ -14,7 +14,83 @@ typedef struct {
     char name[50];
     float price;
 } Item;
+typedef struct {
+    char category[30];
+    char name[50];
+    float price;
+} MenuItem;
 
+
+MenuItem menu[] = {
+
+    // -------- SANDWICH --------
+    {"Sandwich", "Layered Bombay Sandwich", 36.54},
+    {"Sandwich", "Paneer Tikka Sandwich", 87.43},
+    {"Sandwich", "Boiled Egg Sandwich", 87.90},
+    {"Sandwich","Aloo Tikki Sandwich", 36.93},
+    {"Sandwich","Veg Masala Sandwich", 54.62},
+    {"Sandwich","Chutney Sandwich", 32.64},
+    {"Sandwich","Chicken Tikka Sandwich", 96.64},
+    {"Sandwich","Egg Bhurji Sandwich", 94.24},
+    {"Sandwich","Keema Sandwich", 85.00},
+
+    // -------- BURGER ----------
+    {"Burger", "Aloo Tikki Burger", 169.75},
+    {"Burger", "Paneer Burger", 149.84},
+    {"Burger","Paneer Burger", 149.84},
+    {"Burger","Tandoori Chicken Burger", 329.74},
+    {"Burger","Veggie Burger",132.85},
+    {"Burger","Chicken Burger", 247.84},
+    {"Burger","Mutton/Lamb Burger", 549.35},
+    {"Burger","Zinger Burger",549.73},
+
+    // -------- OMLET -----------
+    {"Omlet", "Masala Omelette", 374.75},
+    {"Omlet", "Bread Omelette", 346.84},
+    {"Omlet","Tandoori Omelette", 214.74},
+    {"Omlet","Cheese Omelette",325.85},
+    {"Omlet","Paneer Omelette", 435.84},
+    {"Omlet","Mushroom Omelette", 453.35},
+    {"Omlet","Spinach Omelette",435.73},
+    {"Omlet","Chapati Omelette Roll",465.73},
+
+    // -------- NOODLE -------------
+    {"Noodle","Maggi",36.54},
+    {"Noodle","Sunfeast YiPPee!", 87.43},
+    {"Noodle","Ching's Secret", 36.93},
+    {"Noodle","Top Ramen", 54.62},
+    {"Noodle","Knorr", 32.64},
+    {"Noodle","Patanjali", 96.64},
+    {"Noodle","Wai Wai", 94.24},
+    {"Noodle","Hakka Noodles", 85.00},
+    {"Noodle","Chowmein", 87.90},
+    {"Noodle","Thukpa", 87.90},
+    {"Noodle","Idiyappam", 87.90},
+    {"Noodle","Seviyan (Vermicelli)", 87.90},
+    {"Noodle","Chilli Garlic Noodles", 87.90},
+    {"Noodle","Ramen", 87.90},
+    
+    // -------- TEA -------------
+    {"Tea", "Masala Tea", 15},
+    {"Tea", "Ginger Tea", 20},
+    {"Tea", "Lemon Tea", 20},
+    {"Tea", "Elaichi Tea", 20},
+    {"Tea", "Green Tea", 20},
+
+    // -------- COFFEE ----------
+    {"Coffee", "Cold Coffee", 30},
+    {"Coffee", "Cappuccino", 140},
+    {"Coffee","Black Coffee", 20},
+    {"Coffee","Espresso Coffee", 50},
+    {"Coffee","Americano Coffee", 80},
+    {"Coffee","Latte Coffee", 90},
+    {"Coffee","Mocha Coffee", 180},
+    {"Coffee","Breve Coffee", 190},
+
+    // -------- COLA ------------
+    {"Cola", "Coca-Cola", 15.3},
+    {"Cola", "Pepsi", 14.76},
+};
 
 
 #define MAX_ORDERS 100
