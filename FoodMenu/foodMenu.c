@@ -145,10 +145,9 @@ void GingerAleList();
 // Sparkling Water
 void SparklingWaterList();
 void showOrderHistory();
-void displayDrinksMenu(){
-    printf("display drinks feature coming soon...\n");
 
-}
+// Drinks Menu
+void displayDrinksMenu();
 
 // breakfast
 void breakfastMenu(int choice);
@@ -343,6 +342,7 @@ void displayTimeMenu()
     printf("1. Good Morning\n");
     printf("2. Good Afternoon\n");
     printf("3. Good Evening\n");
+    printf("\t\t\t\t0. Back\n");
     smallLine();
 }
 
@@ -357,8 +357,9 @@ void getUserTime()
     scanf("%d", &timeChoice);
     clearScreen();
 
-    switch (timeChoice)
-    {
+    switch (timeChoice){     
+    case 0:
+        return;
     case 1:
         printf("\nGood Morning \n");
         foodItemMorning();
@@ -387,14 +388,15 @@ void foodItemMorning()
     smallLine();
     printf("1. Drinks\n");
     printf("2. Breakfast\n");
+    printf("\t\t\t\t0. Back\n");
     smallLine();
 
     printf("Select item: ");
     scanf("%d", &choice);
     clearScreen();
-
-    if (choice == 1)
-    {
+    if(choice == 0){
+        return;
+    }else if (choice == 1){
         int drinkChoice;
 
         smallLine();
@@ -420,6 +422,7 @@ void foodItemMorning()
         printf("2. Burger\n");
         printf("3. Omlet\n");
         printf("4. Noodle\n");
+        printf("\t\t\t\t0. Back\n");
         smallLine();
 
         printf("Select Breakfast: ");
@@ -486,8 +489,6 @@ void orderSandwich(Item sandwich[], int count){
        PriceCalculator(sandwich, selectItem, "Sandwich");
 
 }
-
-
 
 void burgerList(){
     Item burger[] = {
@@ -559,8 +560,6 @@ void orderOmlet(Item omlet[], int count){
 
 }
 
-
-
 void noodleList(){
     Item noodle[] = {
         {"Maggi",36.54},
@@ -589,7 +588,6 @@ void noodleList(){
     orderNoodle(noodle, count);
 }
 
-
 void orderNoodle(Item noodle[], int count){
     int selectItem;
     printf("Select a noodle: ");
@@ -601,10 +599,41 @@ void orderNoodle(Item noodle[], int count){
         return;
     }
 
-       PriceCalculator(noodle, selectItem, "Noodle");
+    PriceCalculator(noodle, selectItem, "Noodle");
 
 }
 
+
+/*------------------Drinks Menu-----------------*/
+void displayDrinksMenu(){
+  
+    int choice;
+    smallLine();
+        printf("DRINKS MENU\n");
+        smallLine();
+        printf("1. Hot Drink\n");
+        printf("2. Cold Drink\n");
+        printf("0. Back\n");
+        printf("Choice: ");
+        scanf("%d", &choice);
+        clearScreen();
+
+        switch (choice) {
+        case 1:
+            hotDrink();
+            break;
+
+        case 2:
+            coldDrink();
+            break;
+
+        case 0:
+            return;  
+
+        default:
+            printf("Invalid choice!\n");
+        }
+} 
 
 /* ---------- DRINKS FUNCTION ---------- */
 void drinksMenu(int choice){
@@ -634,12 +663,15 @@ void hotDrink(){
     printf("Choice your hot drink: ");
     scanf("%d", &selectedItem);
 
-    if (selectedItem == 1){
+    if (selectedItem == 0){
+        return;
+    }else if (selectedItem == 1){
         TeaList();
     }else if(selectedItem == 2){
         CoffeeList();
     }
 }
+
 void TeaList(){
     Item tea[] = {
         {"Masala tea", 10},
@@ -658,7 +690,6 @@ void TeaList(){
 
     orderTea(tea, count);
 }
-
 
 void orderTea(Item tea[], int count){
     int selectTea;
@@ -697,8 +728,6 @@ void CoffeeList(){
     orderCoffee(coffee, count);
 }
 
-
-
 void orderCoffee(Item coffee[], int count){
     int selectItem;
     printf("Select a Coffee: ");
@@ -713,12 +742,10 @@ void orderCoffee(Item coffee[], int count){
     PriceCalculator(coffee, selectItem, "Coffee");
 }
 
-
 // Cold Drink
-
 void coldDrink(){
     smallLine();
-    printf("LIST IF HOT DRINKS\n");
+    printf("LIST IF COLD DRINKS\n");
     dotLine();
     char coldDrinkList[5][100] = {"Carbonated Drinks", "Non-Carbonated Drinks", "Traditional & Herbal Drinks", "Energy Drinks", "Iced Tea & Coffee"};
     for(int i=0;i<5;i++){
@@ -729,11 +756,13 @@ void coldDrink(){
     printf("Choice your cold drink: ");
     scanf("%d",&selectedItem);
 
-    if(selectedItem == 1){
+    if(selectedItem == 0){
+        return;
+    }else if(selectedItem == 1){
         CarbonatedDrinksList();
     }
 }
-
+// Carbonated Drinks
 void CarbonatedDrinksList(){
     char carbonatedDrinksItem[5][20] = {"Cola","Lemon-lime", "Fruit Flavored","Ginger Ale","Sparkling Water"
     };
@@ -745,7 +774,9 @@ void CarbonatedDrinksList(){
     printf("Choice your carbonatedDrinks drink: ");
     scanf("%d",&selectedItem);
 
-    if(selectedItem == 1){
+    if(selectedItem == 0){
+        return;
+    }else if(selectedItem == 1){
         ColaList();
     }else if(selectedItem == 2){
         LemonLimeList();
@@ -783,8 +814,6 @@ void ColaList() {
     orderCola(cola, count);
 }
 
-
-
 void orderCola(Item cola[], int count){
     int selectItem;
      printf("Select Cola: ");
@@ -795,7 +824,6 @@ void orderCola(Item cola[], int count){
         printf("Invalid choice!\n");
         return;
     }
-
     PriceCalculator(cola, selectItem, "Cola");
 }
 
@@ -807,7 +835,6 @@ void LemonLimeList(){
     {"Limca"},
     {"Mountain Dew"},
    };
-    
    int count = sizeof(lemonLime) / sizeof(lemonLime[0]);
 
    for (int i = 0; i < count; i++){
@@ -816,7 +843,6 @@ void LemonLimeList(){
     }
     orderLemonLime(lemonLime, count);
 }
-
 
 void orderLemonLime(Item orderLemonLime[], int count){
     int selectItem;
@@ -837,14 +863,12 @@ void FruitFlavoredList(){
         {"Fanta"},
         {"Mirinda"},
     };
-    
     int count = sizeof(fruitFlavored) / sizeof(fruitFlavored[0]);
 
     for (int i = 0; i < count; i++){
         printf("%d. %s ___________________________ %.2f/-\n",
                i + 1, fruitFlavored[i].name, fruitFlavored[i].price);
     }
-
     orderfruitFlavored(fruitFlavored, count);
 }
 
@@ -864,7 +888,7 @@ void orderfruitFlavored(Item fruitFlavored[], int count){
 // Ginger ALe
 void GingerAleList(){
     Item gingerAle[] = {
-        {"Schweppes"},
+        {"Schweppes",54.65},
     };
 
     int count = sizeof(gingerAle) / sizeof(gingerAle[0]);
@@ -876,6 +900,7 @@ void GingerAleList(){
 
     orderGingerAle(gingerAle, count);
 }
+
 void orderGingerAle(Item gingerAle[], int count){
     int selectItem;
      printf("Select gingerAle: ");
@@ -895,7 +920,6 @@ void SparklingWaterList(){
     Item sparklingWater[] = {
         {"Plain",20},
     };
-
     int count = sizeof(sparklingWater) / sizeof(sparklingWater[0]);
 
     for (int i = 0; i < count; i++){
@@ -905,7 +929,6 @@ void SparklingWaterList(){
     orderSparklingWater(sparklingWater, count);
 
 }
-
 
 void orderSparklingWater(Item sparklingWater[], int count){
     int selectItem;
