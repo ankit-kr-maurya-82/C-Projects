@@ -20,6 +20,7 @@ typedef struct {
 #define MAX_ORDERS 100
 
 typedef struct{
+    char category[50];
     char name[50];
     float price;
     int qty;
@@ -123,7 +124,7 @@ void displayTimeMenu();
 void getUserTime();
 void foodItemMorning();
 // Calculator
-void PriceCalculator(Item items[], int choice);
+void PriceCalculator(Item items[], int choice, const char *category);
 void drinksMenu(int choice);
 // Hot Drinks
 void hotDrink();
@@ -228,7 +229,6 @@ void spaceTab(int num){
     }
     
 }
-
 void showOrderHistory() {
     clearScreen();
     smallLine();
@@ -239,15 +239,19 @@ void showOrderHistory() {
         printf("No orders placed yet.\n");
     } else {
         float grandTotal = 0.0f;
+
         for (int i = 0; i < orderCount; ++i) {
             Order *o = &orderHistory[i];
-            printf("%d. %s\n", i + 1, o->name);
+
+            printf("%d. [%s] %s\n", i + 1, o->category, o->name);
             printf("   Price : %.2f\n", o->price);
             printf("   Qty   : %d\n", o->qty);
             printf("   Total : %.2f\n", o->total);
             printf("---------------------------------\n");
+
             grandTotal += o->total;
         }
+
         printf("GRAND TOTAL: %.2f\n", grandTotal);
     }
 
@@ -259,7 +263,8 @@ void showOrderHistory() {
 
 
 
-void PriceCalculator(Item items[], int choice) {
+
+void PriceCalculator(Item items[], int choice, const char *category) {
     int qty;
     float totalAmount;
 
@@ -279,6 +284,7 @@ void PriceCalculator(Item items[], int choice) {
 
     // Save to file
     Order o;
+    strcpy(o.category, category);
     strncpy(o.name, items[choice - 1].name, sizeof(o.name)-1);
     o.name[sizeof(o.name)-1] = '\0';
     o.price = items[choice - 1].price;
@@ -469,7 +475,7 @@ void orderSandwich(Item sandwich[], int count){
         return;
     }
 
-       PriceCalculator(sandwich, selectItem);
+       PriceCalculator(sandwich, selectItem, "Sandwich");
 
 }
 
@@ -506,7 +512,7 @@ void orderBurger(Item burger[], int count){
         return;
     }
 
-       PriceCalculator(burger, selectItem);
+       PriceCalculator(burger, selectItem, "Burger");
 
 }
 
@@ -541,7 +547,7 @@ void orderOmlet(Item omlet[], int count){
         return;
     }
 
-       PriceCalculator(omlet, selectItem);
+       PriceCalculator(omlet, selectItem, "Omlet");
 
 }
 
@@ -587,7 +593,7 @@ void orderNoodle(Item noodle[], int count){
         return;
     }
 
-       PriceCalculator(noodle, selectItem);
+       PriceCalculator(noodle, selectItem, "Noodle");
 
 }
 
@@ -657,7 +663,7 @@ void orderTea(Item tea[], int count){
         return;
     }
 
-       PriceCalculator(tea, selectTea);
+       PriceCalculator(tea, selectTea, "Tea");
 
 }
 
@@ -696,7 +702,7 @@ void orderCoffee(Item coffee[], int count){
         return;
     }
 
-    PriceCalculator(coffee, selectItem);
+    PriceCalculator(coffee, selectItem, "Coffee");
 }
 
 
@@ -781,7 +787,7 @@ void orderCola(Item cola[], int count){
         return;
     }
 
-    PriceCalculator(cola, selectItem);
+    PriceCalculator(cola, selectItem, "Cola");
 }
 
 // LemonLine
