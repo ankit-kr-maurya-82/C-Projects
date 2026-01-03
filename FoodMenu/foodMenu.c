@@ -796,17 +796,72 @@ void orderCola(Item cola[], int count){
 
 // LemonLine
 void LemonLimeList(){
-    printf("LemonLime coming soon...............\n");
+   Item lemonLime[] = {
+    {"Sprite"},
+    {"7UP"},
+    {"Limca"},
+    {"Mountain Dew"},
+   };
+    
+   int count = sizeof(lemonLime) / sizeof(lemonLime[0]);
+
+   for (int i = 0; i < count; i++){
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, lemonLime[i].name, lemonLime[i].price);
+    }
+
+        
+    orderTea(lemonLime, count);
+
+
+
 }
 // Fruit Flavored
 void FruitFlavoredList(){
-    printf("Fruit Flavored coming soon...............\n");
+    Item fruitFlavored[] = {
+        {"Fanta"},
+        {"Mirinda"},
+    };
+    
+    int count = sizeof(fruitFlavored) / sizeof(fruitFlavored[0]);
+
+    for (int i = 0; i < count; i++){
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, fruitFlavored[i].name, fruitFlavored[i].price);
+    }
+
+    orderI(fruitFlavored, count);
 }
 // Ginger ALe
 void GingerAleList(){
-    printf("Ginger Ale coming soon...............\n");
+    Item gingerAle[] = {
+        {"Schweppes"},
+    };
+
+    int count = sizeof(gingerAle) / sizeof(gingerAle[0]);
+
+    for (int i = 0; i < count; i++){
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, gingerAle[i].name, gingerAle[i].price);
+    }
+
+        orderGingerAle(gingerAle, count);
+
+
 }
 // Sparkling Water
 void SparklingWaterList(){
-    printf("Sparkling Water coming soon...............\n");
+    Item sparklingWater[] = {
+        {"Plain",20},
+    };
+
+    int count = sizeof(sparklingWater) / sizeof(sparklingWater[0]);
+
+    for (int i = 0; i < count; i++){
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, sparklingWater[i].name, sparklingWater[i].price);
+    }
+        orderSparklingWater(sparklingWater, count);
+
+
 }
