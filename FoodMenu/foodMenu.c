@@ -134,7 +134,11 @@ void CoffeeList(); // Coffee
 void orderCoffee(Item coffee[], int count);
 // Mini Cold Drinks
 void miniColdDrink();
-void CarbonatedDrinksList(); // Carbonated Drinks
+void coldDrink();
+
+ // Carbonated Drinks
+void CarbonatedDrinksList();
+
 void ColaList(); // Cola
 void orderCola(Item cola[], int count);
 void LemonLimeList();
@@ -144,6 +148,14 @@ void FruitFlavoredList();
 void GingerAleList();
 // Sparkling Water
 void SparklingWaterList();
+
+ // Non-Carbonated Drinks
+void NonCarbonatedDrinksList();
+void JuiceList();
+void ShakesList();
+void DairyBasedList();
+void CoconutWaterList();
+
 void showOrderHistory();
 
 // Drinks Menu
@@ -673,7 +685,7 @@ void TeaList(){
     Item tea[] = {
         {"Masala tea", 10},
         {"Adarak tea", 40},
-        {"Nimbu tea", 15.57},
+        {"Lemon tea", 15.57},
         {"Elaichi tea", 10.39},
         {"Green tea", 30.58}
     };
@@ -757,6 +769,8 @@ void coldDrink(){
         return;
     }else if(selectedItem == 1){
         CarbonatedDrinksList();
+    }else if(selectedItem == 2){
+        NonCarbonatedDrinksList();
     }
 }
 // Mini Cold Drink
@@ -788,7 +802,7 @@ void CarbonatedDrinksList(){
     }
 
      int selectedItem;
-    printf("Choice your carbonatedDrinks drink: ");
+    printf("Choice your carbonated drink: ");
     scanf("%d",&selectedItem);
 
     if(selectedItem == 0){
@@ -960,3 +974,34 @@ void orderSparklingWater(Item sparklingWater[], int count){
 
     PriceCalculator(sparklingWater, selectItem, "SparklingWater");
 }
+
+// Non-Carbonated Drinks
+
+void NonCarbonatedDrinksList(){
+    char nonCarbonatedDrinksItem[4][20] = {"Juices", "Shakes", "Dairy-Based", "Coconut Water"};
+    for(int i=0;i<5;i++){
+        printf(" %d. %s\n", i+1, nonCarbonatedDrinksItem[i]);
+    }
+
+    int selectedItem;
+
+     printf("Choice your non-carbonated drink: ");
+    scanf("%d",&selectedItem);
+
+    if(selectedItem == 0){
+        return;
+    }else if(selectedItem == 1){
+        JuiceList();
+    }else if(selectedItem == 2){
+        ShakesList();
+    }else if(selectedItem == 3){
+        DairyBasedList();
+    }else if(selectedItem == 4){
+        CoconutWaterList();
+    }
+}
+
+void JuiceList(){}
+void ShakesList(){}
+void DairyBasedList(){}
+void CoconutWaterList(){}
