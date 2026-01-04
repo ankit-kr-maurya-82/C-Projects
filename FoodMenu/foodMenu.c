@@ -123,6 +123,7 @@ void displayTimeMenu();
 
 void getUserTime();
 void foodItemMorning();
+void foodItemAfternoon();
 // Calculator
 void PriceCalculator(Item items[], int choice, const char *category);
 void drinksMenu(int choice);
@@ -383,6 +384,7 @@ void getUserTime()
 
     case 2:
         printf("\nGood Afternoon \n");
+        foodItemAfternoon();
         break;
 
     case 3:
@@ -419,7 +421,7 @@ void foodItemMorning()
         printf("             DRINKS MENU\n");
         smallLine();
         printf("1. Hot Drink\n");
-        printf("2. Cold Drink\n");
+        printf("\t\t\t\t0. Cold Drink\n");
         smallLine();
 
         printf("Select drink: ");
@@ -865,10 +867,10 @@ void orderCola(Item cola[], int count){
 // LemonLine
 void LemonLimeList(){
    Item lemonLime[] = {
-    {"Sprite"},
-    {"7UP"},
-    {"Limca"},
-    {"Mountain Dew"},
+    {"Sprite",120},
+    {"7UP",67},
+    {"Limca",30},
+    {"Mountain Dew",78},
    };
    int count = sizeof(lemonLime) / sizeof(lemonLime[0]);
 
@@ -890,7 +892,7 @@ void orderLemonLime(Item orderLemonLime[], int count){
         return;
     }
 
-    PriceCalculator(orderLemonLime, selectItem, "orderLemonLime");
+    PriceCalculator(orderLemonLime, selectItem, "LemonLime");
 }
 // Fruit Flavored
 void FruitFlavoredList(){
@@ -983,7 +985,7 @@ void orderSparklingWater(Item sparklingWater[], int count){
 
 void NonCarbonatedDrinksList(){
     char nonCarbonatedDrinksItem[4][20] = {"Juices", "Shakes", "Dairy-Based", "Coconut Water"};
-    for(int i=0;i<5;i++){
+    for(int i=0;i<4;i++){
         printf(" %d. %s\n", i+1, nonCarbonatedDrinksItem[i]);
     }
 
@@ -1067,4 +1069,112 @@ void CoconutWaterList(){
     }
     orderCoconutWater(coconutWater, count);
 }
-void orderCoconutWater(Item orderCoconutWater[], int count){}
+void orderCoconutWater(Item CoconutWater[], int count){
+     int selectItem;
+     printf("Select Coconut Water: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if(selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+
+    PriceCalculator(CoconutWater, selectItem, "CoconutWater");
+}
+
+
+// -------------- NOON FOOD------------------
+
+
+void foodItemAfternoon(){
+     int choice;
+     int lunchChoice;
+
+    smallLine();
+    printf("          EVENING FOOD MENU\n");
+    smallLine();
+    printf("1. Veg\n");
+    printf("2. Non-Veg\n");
+    printf("\t\t\t\t0. Back\n");
+    smallLine();
+
+    printf("Select item: ");
+    scanf("%d", &choice);
+    clearScreen();
+    if(choice == 0){
+        return;
+    }else if (choice == 1){
+
+        smallLine();
+        printf("             VEG MENU\n");
+        smallLine();
+        printf("1. Hot Drink\n");
+        printf("\t\t\t\t0. Cold Drink\n");
+        smallLine();
+
+        printf("Select drink: ");
+        scanf("%d", &lunchChoice);
+        clearScreen();
+
+        lunchMenu(lunchChoice);
+    }
+    else if (choice == 2){
+        clearScreen();
+        smallLine();
+        printf("\n          NON VEG MENU\n");
+        smallLine();
+        printf("1. Sandwich\n");
+        printf("2. Burger\n");
+        printf("3. Omlet\n");
+        printf("4. Noodle\n");
+        printf("\t\t\t\t0. Back\n");
+        smallLine();
+
+        printf("Select lunch: ");
+        scanf("%d", &lunchChoice);
+        clearScreen();
+
+        breakfastMenu(lunchChoice);
+    }else{
+        printf("\nInvalid item choice!\n");
+    }
+}
+
+
+
+//  ------------- Lunch Function --------
+void LunchMenu(int choice){
+    if(choice == 0){
+        return;
+    }else if(choice == 1){
+        sandwichList();
+    }else if(choice == 2){
+        burgerList();
+    }else if(choice == 3){
+        omletList();
+    }else if(choice == 4){
+        noodleList();
+    }else{
+        printf("Invalid lunch choice!\n");
+    }
+}
+
+
+
+//  ------------- Dinner Function --------
+void DinnerMenu(int choice){
+    if(choice == 0){
+        return;
+    }else if(choice == 1){
+        sandwichList();
+    }else if(choice == 2){
+        burgerList();
+    }else if(choice == 3){
+        omletList();
+    }else if(choice == 4){
+        noodleList();
+    }else{
+        printf("Invalid dinner choice!\n");
+    }
+}
