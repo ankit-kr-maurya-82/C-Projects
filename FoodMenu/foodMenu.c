@@ -152,9 +152,13 @@ void SparklingWaterList();
  // Non-Carbonated Drinks
 void NonCarbonatedDrinksList();
 void JuiceList();
+void orderJuice(Item[], int);
 void ShakesList();
+void orderShakes(Item[], int);
 void DairyBasedList();
+void orderDairyBased(Item[], int);
 void CoconutWaterList();
+void orderCoconutWater(Item[], int);
 
 void showOrderHistory();
 
@@ -975,7 +979,7 @@ void orderSparklingWater(Item sparklingWater[], int count){
     PriceCalculator(sparklingWater, selectItem, "SparklingWater");
 }
 
-// Non-Carbonated Drinks
+// Non-Carbonated Drinks 
 
 void NonCarbonatedDrinksList(){
     char nonCarbonatedDrinksItem[4][20] = {"Juices", "Shakes", "Dairy-Based", "Coconut Water"};
@@ -1001,7 +1005,66 @@ void NonCarbonatedDrinksList(){
     }
 }
 
-void JuiceList(){}
-void ShakesList(){}
-void DairyBasedList(){}
-void CoconutWaterList(){}
+void JuiceList(){
+    Item juice[] = {
+    {"Orange",195},
+    {"Apple",154},
+    {"Mango",175},
+    {"Mixed Fruit",132},
+   };
+   int count = sizeof(juice) / sizeof(juice[0]);
+
+   for (int i = 0; i < count; i++){
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, juice[i].name, juice[i].price);
+    }
+    orderJuice(juice, count);
+}
+void orderJuice(Item orderJuice[], int count){}
+void ShakesList(){
+    Item shakes[] = {
+    {"Chocolate Shake",65},
+    {"Mango Shake",96},
+    {"Banana Shake",75},
+     {"Milk shakes",54},
+    {"Papaya Shake",32},
+   };
+   int count = sizeof(shakes) / sizeof(shakes[0]);
+
+   for (int i = 0; i < count; i++){
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, shakes[i].name, shakes[i].price);
+    }
+    orderShakes(shakes, count);
+}
+void orderShakes(Item orderShakes[], int count){}
+void DairyBasedList(){
+    Item dairyBase[] = {
+    {"ButterMilk",32},
+    {"Lassi",43},
+    {"Milk shakes",54},
+    {"Chocolate Milk",85},
+   };
+   int count = sizeof(dairyBase) / sizeof(dairyBase[0]);
+
+   for (int i = 0; i < count; i++){
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, dairyBase[i].name, dairyBase[i].price);
+    }
+    orderDairyBased(dairyBase, count);
+}
+void orderDairyBased(Item orderJuice[], int count){}
+void CoconutWaterList(){
+    Item coconutWater[] = {
+    {"Natural Water",50},
+    {"Refresh Water",58},
+   };
+   int count = sizeof(coconutWater) / sizeof(coconutWater[0]);
+
+   for (int i = 0; i < count; i++){
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, coconutWater[i].name, coconutWater[i].price);
+    }
+    orderCoconutWater(coconutWater, count);
+}
+void orderCoconutWater(Item orderCoconutWater[], int count){}
