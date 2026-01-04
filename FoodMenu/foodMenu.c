@@ -6,7 +6,6 @@
 
 // Sleep(1000);
 
-
 // <------Menu-Driven Program using  Functions-----> 
 
 // <-------------------Structure------------------>
@@ -173,6 +172,9 @@ void burgerList();
 void omletList();
 void noodleList();
 
+// lunch
+void VegLunchFoodMenu(int choice);
+void NonVegLunchFoodMenu(int choice);
 
 void orderSandwich(Item[], int);
 void orderBurger(Item[], int);
@@ -782,10 +784,10 @@ void coldDrink(){
 // Mini Cold Drink
 void miniColdDrink(){
     smallLine();
-    printf("LIST IF COLD DRINKS\n");
+    printf("LIST OF COLD DRINKS\n");
     dotLine();
     char coldDrinkList[2][100] = {"Carbonated Drinks", "Non-Carbonated Drinks"};
-    for(int i=0;i<5;i++){
+    for(int i=0;i<2;i++){
         printf(" %d. %s\n", i+1, coldDrinkList[i]);
     }
 
@@ -897,8 +899,8 @@ void orderLemonLime(Item orderLemonLime[], int count){
 // Fruit Flavored
 void FruitFlavoredList(){
     Item fruitFlavored[] = {
-        {"Fanta"},
-        {"Mirinda"},
+        {"Fanta",43},
+        {"Mirinda",76},
     };
     int count = sizeof(fruitFlavored) / sizeof(fruitFlavored[0]);
 
@@ -1102,49 +1104,24 @@ void foodItemAfternoon(){
     printf("Select item: ");
     scanf("%d", &choice);
     clearScreen();
-    if(choice == 0){
-        return;
-    }else if (choice == 1){
-
-        smallLine();
-        printf("             VEG MENU\n");
-        smallLine();
-        printf("1. Hot Drink\n");
-        printf("\t\t\t\t0. Cold Drink\n");
-        smallLine();
-
-        printf("Select drink: ");
-        scanf("%d", &lunchChoice);
-        clearScreen();
-
-        lunchMenu(lunchChoice);
-    }
-    else if (choice == 2){
-        clearScreen();
-        smallLine();
-        printf("\n          NON VEG MENU\n");
-        smallLine();
-        printf("1. Sandwich\n");
-        printf("2. Burger\n");
-        printf("3. Omlet\n");
-        printf("4. Noodle\n");
-        printf("\t\t\t\t0. Back\n");
-        smallLine();
-
-        printf("Select lunch: ");
-        scanf("%d", &lunchChoice);
-        clearScreen();
-
-        breakfastMenu(lunchChoice);
-    }else{
-        printf("\nInvalid item choice!\n");
-    }
+    switch (choice) {
+        case 1:
+            VegLunchFoodMenu();
+            break;
+        case 2:
+            NonVegLunchFoodMenu();
+            break;
+        case 0:
+            return;  
+        default:
+            printf("Invalid choice!\n");
+        }
 }
 
 
 
 //  ------------- Lunch Function --------
-void LunchMenu(int choice){
+void VegLunchFoodMenu(int choice){
     if(choice == 0){
         return;
     }else if(choice == 1){
