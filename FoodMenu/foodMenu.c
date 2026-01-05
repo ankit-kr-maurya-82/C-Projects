@@ -173,8 +173,8 @@ void omletList();
 void noodleList();
 
 // lunch
-void VegLunchFoodMenu(int choice);
-void NonVegLunchFoodMenu(int choice);
+void VegLunchFoodMenu();
+void NonVegLunchFoodMenu();
 
 void orderSandwich(Item[], int);
 void orderBurger(Item[], int);
@@ -1121,37 +1121,11 @@ void foodItemAfternoon(){
 
 
 //  ------------- Lunch Function --------
-void VegLunchFoodMenu(int choice){
-    if(choice == 0){
-        return;
-    }else if(choice == 1){
-        sandwichList();
-    }else if(choice == 2){
-        burgerList();
-    }else if(choice == 3){
-        omletList();
-    }else if(choice == 4){
-        noodleList();
-    }else{
-        printf("Invalid lunch choice!\n");
-    }
+
+
+void VegLunchFoodMenu() {
+    printf("Veg menu coming soon...\n");
 }
-
-
-
-//  ------------- Dinner Function --------
-void DinnerMenu(int choice){
-    if(choice == 0){
-        return;
-    }else if(choice == 1){
-        sandwichList();
-    }else if(choice == 2){
-        burgerList();
-    }else if(choice == 3){
-        omletList();
-    }else if(choice == 4){
-        noodleList();
-    }else{
-        printf("Invalid dinner choice!\n");
-    }
+void NonVegLunchFoodMenu() {
+    printf("Non-Veg menu coming soon...\n");
 }
