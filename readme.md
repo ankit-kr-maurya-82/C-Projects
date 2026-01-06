@@ -107,3 +107,14 @@ Food-Order-Management/<br>
 ### Step 1: Compile
 ```bash
 gcc main.c -o food_order
+```
+
+### Step 2: Run
+```bash
+./food_order
+```
+
+### On Windows:
+```bash
+food_order.exe
+```
