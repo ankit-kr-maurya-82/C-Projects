@@ -1024,7 +1024,7 @@ void JuiceList(){
     }
     orderJuice(juice, count);
 }
-void orderJuice(Item orderJuice[], int count){}
+void orderJuice(Item Juice[], int count){}
 void ShakesList(){
     Item shakes[] = {
     {"Chocolate Shake",65},
@@ -1041,7 +1041,7 @@ void ShakesList(){
     }
     orderShakes(shakes, count);
 }
-void orderShakes(Item orderShakes[], int count){}
+void orderShakes(Item Shakes[], int count){}
 void DairyBasedList(){
     Item dairyBase[] = {
     {"ButterMilk",32},
@@ -1057,7 +1057,20 @@ void DairyBasedList(){
     }
     orderDairyBased(dairyBase, count);
 }
-void orderDairyBased(Item orderJuice[], int count){}
+void orderDairyBased(Item DairyBased[], int count){
+    int selectItem;
+    printf("Select Dairy Based: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if(selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+
+    PriceCalculator(DairyBased, selectItem, "DairyBased");
+
+}
 void CoconutWaterList(){
     Item coconutWater[] = {
     {"Natural Water",50},
@@ -1072,8 +1085,8 @@ void CoconutWaterList(){
     orderCoconutWater(coconutWater, count);
 }
 void orderCoconutWater(Item CoconutWater[], int count){
-     int selectItem;
-     printf("Select Coconut Water: ");
+    int selectItem;
+    printf("Select Coconut Water: ");
     scanf("%d", &selectItem);
     clearScreen();
 
@@ -1124,7 +1137,7 @@ void foodItemAfternoon(){
 
 
 void VegLunchFoodMenu() {
-    printf("Veg menu coming soon...\n");
+    
 }
 void NonVegLunchFoodMenu() {
     printf("Non-Veg menu coming soon...\n");
