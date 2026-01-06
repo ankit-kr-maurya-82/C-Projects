@@ -1024,7 +1024,20 @@ void JuiceList(){
     }
     orderJuice(juice, count);
 }
-void orderJuice(Item Juice[], int count){}
+void orderJuice(Item Juice[], int count){
+    int selectItem;
+    printf("Select Juice: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if(selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+
+    PriceCalculator(Juice, selectItem, "Juice");
+
+}
 void ShakesList(){
     Item shakes[] = {
     {"Chocolate Shake",65},
@@ -1041,7 +1054,20 @@ void ShakesList(){
     }
     orderShakes(shakes, count);
 }
-void orderShakes(Item Shakes[], int count){}
+void orderShakes(Item Shakes[], int count){
+    int selectItem;
+    printf("Select Shakes: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if(selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+
+    PriceCalculator(Shakes, selectItem, "Shakes");
+
+}
 void DairyBasedList(){
     Item dairyBase[] = {
     {"ButterMilk",32},
