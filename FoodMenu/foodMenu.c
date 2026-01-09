@@ -174,6 +174,11 @@ void noodleList();
 
 // lunch
 void VegLunchFoodMenu();
+void MainCarbList();
+void DalList();
+void VegeDishList();
+void SweetList();
+void RiceDishList();
 void NonVegLunchFoodMenu();
 
 void orderSandwich(Item[], int);
@@ -1163,8 +1168,54 @@ void foodItemAfternoon(){
 
 
 void VegLunchFoodMenu() {
-    
+    char vegLunchFoodItem[5][20]= {"Main Carb", "Dal", "Vegetable Dish", "Sweet", "Rice Dishes"};
+     for(int i=0;i<5;i++){
+        printf(" %d. %s\n", i+1, vegLunchFoodItem[i]);
+    }
+
+      int selectedItem;
+    printf("Choice your Lunch ");
+    scanf("%d",&selectedItem);
+
+       if(selectedItem == 0){
+        return;
+    }else if(selectedItem == 1){
+        MainCarbList();
+    }else if(selectedItem == 2){
+        DalList();
+    }else if(selectedItem == 3){
+        VegeDishList();
+    }else if(selectedItem == 4){
+        SweetList();
+    }else if(selectedItem == 5){
+        RiceDishList();
+    }
+
 }
+
+
+void MainCarbList(){
+
+    printf("MainCarblist...\n");
+}
+void DalList(){
+
+    printf("Dallist...\n");
+}
+void VegeDishList(){
+
+    printf("VegDish...\n");
+}
+void SweetList(){
+
+    printf("Sweetlist...\n");
+}
+void RiceDishList(){
+
+    printf("RiceDishlist...\n");
+}
+
 void NonVegLunchFoodMenu() {
     printf("Non-Veg menu coming soon...\n");
+
 }
