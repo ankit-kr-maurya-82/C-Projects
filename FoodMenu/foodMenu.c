@@ -179,6 +179,14 @@ void DalList();
 void VegeDishList();
 void SweetList();
 void RiceDishList();
+
+void orderMainCarb(Item[], int);
+// void DalList();
+// void VegeDishList();
+// void SweetList();
+// void RiceDishList();
+
+
 void NonVegLunchFoodMenu();
 
 void orderSandwich(Item[], int);
@@ -1195,9 +1203,41 @@ void VegLunchFoodMenu() {
 
 
 void MainCarbList(){
+    Item maincarb[] = {
+        {"Roti",20},
+        {"Paratha",30},
+        {"Jeera Rice",45},
+        {"Pulao",56},
+    };
+    
+    int count = sizeof(maincarb) / sizeof(maincarb[0]);
+    dotLine();
+    spaceTab(4);
+    printf("MAIN CARB MENU\n");
+    dotLine();
 
-    printf("MainCarblist...\n");
+    for (int i = 0; i < count; i++) {
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, maincarb[i].name, maincarb[i].price);
+    }
+
+    orderMainCarb(maincarb, count);
 }
+
+void orderMainCarb(Item maincarb[], int count){
+    int selectItem;
+     printf("Select Main Carb: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if(selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+    PriceCalculator(maincarb, selectItem, "Main Carb");
+}
+
+
 void DalList(){
 
     printf("Dallist...\n");
