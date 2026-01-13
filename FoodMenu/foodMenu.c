@@ -1440,8 +1440,7 @@ void orderVegDish(Item vegdish[], int count)
     PriceCalculator(vegdish, selectItem, "Vegetable Dish");
 }
 
-void SweetList()
-{
+void SweetList(){
     Item sweet[] = {
         {"Gulab Jamun", 154},
         {"Rasgulla", 326},
@@ -1463,8 +1462,7 @@ void SweetList()
     orderMainCarb(sweet, count);
 }
 
-void orderSweet(Item sweet[], int count)
-{
+void orderSweet(Item sweet[], int count){
     int selectItem;
     printf("Select Sweet: ");
     scanf("%d", &selectItem);
@@ -1478,7 +1476,6 @@ void orderSweet(Item sweet[], int count)
     PriceCalculator(sweet, selectItem, "Sweet");
 }
 void RiceDishList(){
-
     Item ricedish[] = {
         {"Simple Rice", 154},
         {"Jeera Rice", 326},
@@ -1500,10 +1497,9 @@ void RiceDishList(){
     orderMainCarb(ricedish, count);
 }
 
-void orderRiceDish(Item ricedish[], int count)
-{
+void orderRiceDish(Item ricedish[], int count){
     int selectItem;
-    printf("Select Vegetable  Dish: ");
+    printf("Select Rice Dish: ");
     scanf("%d", &selectItem);
     clearScreen();
 
