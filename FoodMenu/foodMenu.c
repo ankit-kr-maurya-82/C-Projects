@@ -190,6 +190,7 @@ void orderSweet(Item[], int);
 void orderRiceDish(Item[], int);
 
 void NonVegLunchFoodMenu();
+void orderNonVeg(Item[], int);
 
 void orderSandwich(Item[], int);
 void orderBurger(Item[], int);
@@ -1347,8 +1348,7 @@ void MainCarbList()
     orderMainCarb(maincarb, count);
 }
 
-void orderMainCarb(Item maincarb[], int count)
-{
+void orderMainCarb(Item maincarb[], int count){
     int selectItem;
     printf("Select Main Carb: ");
     scanf("%d", &selectItem);
@@ -1511,7 +1511,45 @@ void orderRiceDish(Item ricedish[], int count){
     PriceCalculator(ricedish, selectItem, "Rice Dish");
 }
 
-void NonVegLunchFoodMenu()
-{
-    printf("Non-Veg menu coming soon...\n");
+void NonVegLunchFoodMenu(){
+    Item nonveg[] = {
+        {"Butter Chicken", 20},
+        {"Chicken Tikka Masala", 30},
+        {"Chicken Chettinad", 45},
+        {"Chicken Korma", 56},
+        {"Chicken 65", 65},
+        {"Mutton Rogan Josh", 75},
+        {"Fish Curry", 85},
+        {"Egg", 15},
+        {"Tandoori Chicken", 78},
+    };
+
+    int count = sizeof(nonveg) / sizeof(nonveg[0]);
+    dotLine();
+    spaceTab(4);
+    printf("NON VEG MENU\n");
+    dotLine();
+
+    for (int i = 0; i < count; i++)
+    {
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, nonveg[i].name, nonveg[i].price);
+    }
+
+    orderMainCarb(nonveg, count);
+}
+
+
+void orderNonVeg(Item nonveg[], int count){
+    int selectItem;
+    printf("Select Non-Veg: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if (selectItem < 1 || selectItem > count)
+    {
+        printf("Invalid choice!\n");
+        return;
+    }
+    PriceCalculator(nonveg, selectItem, "Non-Veg");
 }
