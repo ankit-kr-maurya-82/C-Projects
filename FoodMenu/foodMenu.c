@@ -1402,10 +1402,28 @@ void orderDal(Item dal[], int count)
     PriceCalculator(dal, selectItem, "Dal");
 }
 
-void VegeDishList()
-{
+void VegeDishList(){
 
-    printf("VegDish...\n");
+    Item vegdish[] = {
+        {"Palak Paneer", 154},
+        {"Aloo Matar", 326},
+        {"Mixed Veg", 246},
+        {"Kadai Paneer", 165},
+    };
+
+    int count = sizeof(vegdish) / sizeof(vegdish[0]);
+    dotLine();
+    spaceTab(4);
+    printf("VEGETABLE DISH  MENU\n");
+    dotLine();
+
+    for (int i = 0; i < count; i++)
+    {
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, vegdish[i].name, vegdish[i].price);
+    }
+
+    orderMainCarb(vegdish, count);
 }
 
 void orderVegDish(Item vegdish[], int count)
