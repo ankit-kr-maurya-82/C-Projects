@@ -1417,8 +1417,7 @@ void VegeDishList(){
     printf("VEGETABLE DISH  MENU\n");
     dotLine();
 
-    for (int i = 0; i < count; i++)
-    {
+    for (int i = 0; i < count; i++){
         printf("%d. %s ___________________________ %.2f/-\n",
                i + 1, vegdish[i].name, vegdish[i].price);
     }
@@ -1443,8 +1442,25 @@ void orderVegDish(Item vegdish[], int count)
 
 void SweetList()
 {
+    Item sweet[] = {
+        {"Gulab Jamun", 154},
+        {"Rasgulla", 326},
+        {"Kheer", 246},
+        {"Jalebi", 165},
+    };
 
-    printf("Sweetlist...\n");
+    int count = sizeof(sweet) / sizeof(sweet[0]);
+    dotLine();
+    spaceTab(4);
+    printf("SWEET MENU\n");
+    dotLine();
+
+    for (int i = 0; i < count; i++){
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, sweet[i].name, sweet[i].price);
+    }
+
+    orderMainCarb(sweet, count);
 }
 
 void orderSweet(Item sweet[], int count)
