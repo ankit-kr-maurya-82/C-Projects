@@ -1477,10 +1477,27 @@ void orderSweet(Item sweet[], int count)
     }
     PriceCalculator(sweet, selectItem, "Sweet");
 }
-void RiceDishList()
-{
+void RiceDishList(){
 
-    printf("RiceDishlist...\n");
+    Item ricedish[] = {
+        {"Simple Rice", 154},
+        {"Jeera Rice", 326},
+        {"Vegetable Pulao", 246},
+        {"Fried Rice", 165},
+    };
+
+    int count = sizeof(ricedish) / sizeof(ricedish[0]);
+    dotLine();
+    spaceTab(4);
+    printf("RICE DISH MENU\n");
+    dotLine();
+
+    for (int i = 0; i < count; i++){
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, ricedish[i].name, ricedish[i].price);
+    }
+
+    orderMainCarb(ricedish, count);
 }
 
 void orderRiceDish(Item ricedish[], int count)
