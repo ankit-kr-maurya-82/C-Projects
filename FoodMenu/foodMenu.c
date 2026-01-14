@@ -202,14 +202,12 @@ void orderGingerAle(Item[], int);
 void orderSparklingWater(Item[], int);
 
 /* ---------- MAIN FUNCTION ---------- */
-int main()
-{
+int main(){
     loadOrdersFromFile(); // Load old orders from file
 
     int userChoice;
 
-    while (1)
-    {
+    while (1){
         displayMainMenu();
         spaceTab(6);
         printf("Enter your choice: ");
@@ -240,47 +238,38 @@ int main()
 }
 
 /* ---------- DESIGN FUNCTIONS ---------- */
-void line()
-{
+void line(){
     printf("============================================\n");
 }
 
-void smallLine()
-{
+void smallLine(){
     printf("--------------------------------------------\n");
 }
 
-void dotLine()
-{
+void dotLine(){
     printf("............................................\n");
 }
 
-void spaceTab(int num)
-{
+void spaceTab(int num){
 
-    for (int i = 0; i < num; i++)
-    {
+    for (int i = 0; i < num; i++){
         printf("\t");
     }
 }
 
-void showOrderHistory()
-{
+void showOrderHistory(){
     clearScreen();
     smallLine();
     printf("ORDER HISTORY\n");
     smallLine();
 
-    if (orderCount == 0)
-    {
+    if (orderCount == 0){
         printf("No orders placed yet.\n");
     }
-    else
-    {
+    else{
         float grandTotal = 0.0f;
 
-        for (int i = 0; i < orderCount; ++i)
-        {
+        for (int i = 0; i < orderCount; ++i){
             Order *o = &orderHistory[i];
 
             printf("%d. Category : %s\n", i + 1, o->category);
@@ -302,8 +291,7 @@ void showOrderHistory()
     clearScreen();
 }
 
-void PriceCalculator(Item items[], int choice, const char *category)
-{
+void PriceCalculator(Item items[], int choice, const char *category){
     int qty;
     float totalAmount;
 
@@ -314,8 +302,7 @@ void PriceCalculator(Item items[], int choice, const char *category)
     totalAmount = qty * items[choice - 1].price;
 
     // Save to memory (optional)
-    if (orderCount < MAX_ORDERS)
-    {
+    if (orderCount < MAX_ORDERS){
         strcpy(orderHistory[orderCount].category, category);
         strcpy(orderHistory[orderCount].name, items[choice - 1].name);
         orderHistory[orderCount].price = items[choice - 1].price;
@@ -349,8 +336,7 @@ void PriceCalculator(Item items[], int choice, const char *category)
 }
 
 /* ---------- MENU DISPLAY FUNCTIONS ---------- */
-void displayMainMenu()
-{
+void displayMainMenu(){
     spaceTab(5);
     line();
     spaceTab(6);
@@ -369,8 +355,7 @@ void displayMainMenu()
     line();
 }
 
-void displayTimeMenu()
-{
+void displayTimeMenu(){
     smallLine();
     printf("TIME GREETING MENU\n");
     smallLine();
@@ -382,16 +367,14 @@ void displayTimeMenu()
 }
 
 /* ---------- LOGIC FUNCTIONS ---------- */
-void getUserTime()
-{
+void getUserTime(){
     int timeChoice;
 
     printf("Enter your choice: ");
     scanf("%d", &timeChoice);
     clearScreen();
 
-    switch (timeChoice)
-    {
+    switch (timeChoice){
     case 0:
         return;
     case 1:
