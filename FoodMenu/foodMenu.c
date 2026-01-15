@@ -201,6 +201,16 @@ void orderfruitFlavored(Item[], int);
 void orderGingerAle(Item[], int);
 void orderSparklingWater(Item[], int);
 
+// dinner
+void foodItemEvening();
+void PaneerDishList();
+void RiceList();
+void DessertList();
+
+void orderPaneerDish(Item paneer[], int count);
+void orderRice(Item rice[], int count);
+void orderDessert(Item dessert[], int count);
+
 /* ---------- MAIN FUNCTION ---------- */
 int main(){
     loadOrdersFromFile(); // Load old orders from file
@@ -1409,3 +1419,148 @@ void orderNonVeg(Item nonveg[], int count){
     }
     PriceCalculator(nonveg, selectItem, "Non-Veg");
 }
+
+
+// -----------------EVENING FOOD-------------------------
+
+void foodItemEvening(){
+    int choice;
+    int dinnerChoice;
+
+    smallLine();
+    printf("          EVENING FOOD MENU\n");
+    smallLine();
+    printf("1. Paneer dishes\n");
+    printf("2. Rice\n");
+    printf("3. Desserts\n");
+    printf("\t\t\t\t0. Back\n");
+    smallLine();
+
+    printf("Select item: ");
+    scanf("%d", &choice);
+    clearScreen();
+    switch (choice){
+    case 1:
+        PaneerDishList();
+        break;
+    case 2:
+        RiceList();
+        break;
+    case 3:
+        DessertList();
+        break;
+    case 0:
+        return;
+    default:
+        printf("Invalid choice!\n");
+    }
+}
+
+void PaneerDishList(){
+    Item paneer[] = {
+        {"Shahi Paneer", 154},
+        {"Paneer Butter Masala", 326},
+        {"Kadai Paneer", 246},
+        {"Palak Paneer", 165},
+    };
+
+    int count = sizeof(paneer) / sizeof(paneer[0]);
+    dotLine();
+    spaceTab(4);
+    printf("PANEER DISH MENU\n");
+    dotLine();
+
+    for (int i = 0; i < count; i++){
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, paneer[i].name, paneer[i].price);
+    }
+
+    orderMainCarb(paneer, count);
+}
+
+
+void RiceList(){
+    Item rice[] = {
+        {"Jeera Rice", 154},
+        {"Vegetable Pulao", 326},
+        {"Fried Rice", 246},
+        {"Biryani", 165},
+    };
+
+    int count = sizeof(rice) / sizeof(rice[0]);
+    dotLine();
+    spaceTab(4);
+    printf("RICE MENU\n");
+    dotLine();
+
+    for (int i = 0; i < count; i++){
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, rice[i].name, rice[i].price);
+    }
+
+    orderMainCarb(rice, count);
+}
+
+void DessertList(){
+    Item dessert[] = {
+        {"Gulab Jamun", 154},
+        {"Rasgulla", 326},
+        {"Kheer", 246},
+        {"Jalebi", 165},
+    };
+
+    int count = sizeof(dessert) / sizeof(dessert[0]);
+    dotLine();
+    spaceTab(4);
+    printf("DESSERT MENU\n");
+    dotLine();
+
+    for (int i = 0; i < count; i++){
+        printf("%d. %s ___________________________ %.2f/-\n",
+               i + 1, dessert[i].name, dessert[i].price);
+    }
+
+    orderMainCarb(dessert, count);
+}
+
+
+void orderPaneerDish(Item paneer[], int count){
+    int selectItem;
+    printf("Select Paneer Dish: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if (selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+    PriceCalculator(paneer, selectItem, "Paneer Dish");
+}
+
+void orderRice(Item rice[], int count){
+    int selectItem;
+    printf("Select Rice: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if (selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+    PriceCalculator(rice, selectItem, "Rice");
+}
+
+
+void orderDessert(Item dessert[], int count){
+    int selectItem;
+    printf("Select Dessert: ");
+    scanf("%d", &selectItem);
+    clearScreen();
+
+    if (selectItem < 1 || selectItem > count){
+        printf("Invalid choice!\n");
+        return;
+    }
+    PriceCalculator(dessert, selectItem, "Dessert");
+}
+
