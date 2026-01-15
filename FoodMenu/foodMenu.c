@@ -1083,15 +1083,13 @@ void DairyBasedList(){
     };
     int count = sizeof(dairyBase) / sizeof(dairyBase[0]);
 
-    for (int i = 0; i < count; i++)
-    {
+    for (int i = 0; i < count; i++){
         printf("%d. %s ___________________________ %.2f/-\n",
                i + 1, dairyBase[i].name, dairyBase[i].price);
     }
     orderDairyBased(dairyBase, count);
 }
-void orderDairyBased(Item DairyBased[], int count)
-{
+void orderDairyBased(Item DairyBased[], int count){
     int selectItem;
     printf("Select Dairy Based: ");
     scanf("%d", &selectItem);
@@ -1105,30 +1103,26 @@ void orderDairyBased(Item DairyBased[], int count)
 
     PriceCalculator(DairyBased, selectItem, "DairyBased");
 }
-void CoconutWaterList()
-{
+void CoconutWaterList(){
     Item coconutWater[] = {
         {"Natural Water", 50},
         {"Refresh Water", 58},
     };
     int count = sizeof(coconutWater) / sizeof(coconutWater[0]);
 
-    for (int i = 0; i < count; i++)
-    {
+    for (int i = 0; i < count; i++){
         printf("%d. %s ___________________________ %.2f/-\n",
                i + 1, coconutWater[i].name, coconutWater[i].price);
     }
     orderCoconutWater(coconutWater, count);
 }
-void orderCoconutWater(Item CoconutWater[], int count)
-{
+void orderCoconutWater(Item CoconutWater[], int count){
     int selectItem;
     printf("Select Coconut Water: ");
     scanf("%d", &selectItem);
     clearScreen();
 
-    if (selectItem < 1 || selectItem > count)
-    {
+    if (selectItem < 1 || selectItem > count){
         printf("Invalid choice!\n");
         return;
     }
@@ -1138,8 +1132,7 @@ void orderCoconutWater(Item CoconutWater[], int count)
 
 // -------------- NOON FOOD------------------
 
-void foodItemAfternoon()
-{
+void foodItemAfternoon(){
     int choice;
     int lunchChoice;
 
@@ -1154,8 +1147,7 @@ void foodItemAfternoon()
     printf("Select item: ");
     scanf("%d", &choice);
     clearScreen();
-    switch (choice)
-    {
+    switch (choice){
     case 1:
         VegLunchFoodMenu();
         break;
@@ -1171,11 +1163,9 @@ void foodItemAfternoon()
 
 //  ------------- Lunch Function --------
 
-void VegLunchFoodMenu()
-{
+void VegLunchFoodMenu(){
     char vegLunchFoodItem[5][20] = {"Main Carb", "Dal", "Vegetable Dish", "Sweet", "Rice Dishes"};
-    for (int i = 0; i < 5; i++)
-    {
+    for (int i = 0; i < 5; i++){
         printf(" %d. %s\n", i + 1, vegLunchFoodItem[i]);
     }
 
@@ -1183,34 +1173,27 @@ void VegLunchFoodMenu()
     printf("Choice your Lunch ");
     scanf("%d", &selectedItem);
 
-    if (selectedItem == 0)
-    {
+    if (selectedItem == 0){
         return;
     }
-    else if (selectedItem == 1)
-    {
+    else if (selectedItem == 1){
         MainCarbList();
     }
-    else if (selectedItem == 2)
-    {
+    else if (selectedItem == 2){
         DalList();
     }
-    else if (selectedItem == 3)
-    {
+    else if (selectedItem == 3){
         VegeDishList();
     }
-    else if (selectedItem == 4)
-    {
+    else if (selectedItem == 4){
         SweetList();
     }
-    else if (selectedItem == 5)
-    {
+    else if (selectedItem == 5){
         RiceDishList();
     }
 }
 
-void MainCarbList()
-{
+void MainCarbList(){
     Item maincarb[] = {
         {"Roti", 20},
         {"Paratha", 30},
@@ -1224,8 +1207,7 @@ void MainCarbList()
     printf("MAIN CARB MENU\n");
     dotLine();
 
-    for (int i = 0; i < count; i++)
-    {
+    for (int i = 0; i < count; i++){
         printf("%d. %s ___________________________ %.2f/-\n",
                i + 1, maincarb[i].name, maincarb[i].price);
     }
@@ -1239,16 +1221,14 @@ void orderMainCarb(Item maincarb[], int count){
     scanf("%d", &selectItem);
     clearScreen();
 
-    if (selectItem < 1 || selectItem > count)
-    {
+    if (selectItem < 1 || selectItem > count){
         printf("Invalid choice!\n");
         return;
     }
     PriceCalculator(maincarb, selectItem, "Main Carb");
 }
 
-void DalList()
-{
+void DalList(){
     Item dal[] = {
         {"Dal Makhani", 154},
         {"Dal Tadka", 326},
@@ -1263,8 +1243,7 @@ void DalList()
     printf("DAL MENU\n");
     dotLine();
 
-    for (int i = 0; i < count; i++)
-    {
+    for (int i = 0; i < count; i++){
         printf("%d. %s ___________________________ %.2f/-\n",
                i + 1, dal[i].name, dal[i].price);
     }
@@ -1272,15 +1251,13 @@ void DalList()
     orderMainCarb(dal, count);
 }
 
-void orderDal(Item dal[], int count)
-{
+void orderDal(Item dal[], int count){
     int selectItem;
     printf("Select Dal: ");
     scanf("%d", &selectItem);
     clearScreen();
 
-    if (selectItem < 1 || selectItem > count)
-    {
+    if (selectItem < 1 || selectItem > count){
         printf("Invalid choice!\n");
         return;
     }
@@ -1310,15 +1287,13 @@ void VegeDishList(){
     orderMainCarb(vegdish, count);
 }
 
-void orderVegDish(Item vegdish[], int count)
-{
+void orderVegDish(Item vegdish[], int count){
     int selectItem;
     printf("Select Vegetable  Dish: ");
     scanf("%d", &selectItem);
     clearScreen();
 
-    if (selectItem < 1 || selectItem > count)
-    {
+    if (selectItem < 1 || selectItem > count){
         printf("Invalid choice!\n");
         return;
     }
@@ -1353,8 +1328,7 @@ void orderSweet(Item sweet[], int count){
     scanf("%d", &selectItem);
     clearScreen();
 
-    if (selectItem < 1 || selectItem > count)
-    {
+    if (selectItem < 1 || selectItem > count){
         printf("Invalid choice!\n");
         return;
     }
@@ -1388,8 +1362,7 @@ void orderRiceDish(Item ricedish[], int count){
     scanf("%d", &selectItem);
     clearScreen();
 
-    if (selectItem < 1 || selectItem > count)
-    {
+    if (selectItem < 1 || selectItem > count){
         printf("Invalid choice!\n");
         return;
     }
@@ -1415,8 +1388,7 @@ void NonVegLunchFoodMenu(){
     printf("NON VEG MENU\n");
     dotLine();
 
-    for (int i = 0; i < count; i++)
-    {
+    for (int i = 0; i < count; i++){
         printf("%d. %s ___________________________ %.2f/-\n",
                i + 1, nonveg[i].name, nonveg[i].price);
     }
@@ -1431,8 +1403,7 @@ void orderNonVeg(Item nonveg[], int count){
     scanf("%d", &selectItem);
     clearScreen();
 
-    if (selectItem < 1 || selectItem > count)
-    {
+    if (selectItem < 1 || selectItem > count){
         printf("Invalid choice!\n");
         return;
     }
