@@ -399,6 +399,7 @@ void getUserTime(){
 
     case 3:
         printf("\nGood Evening \n");
+        foodItemEvening();
         break;
 
     default:
@@ -421,12 +422,10 @@ void foodItemMorning(){
     printf("Select item: ");
     scanf("%d", &choice);
     clearScreen();
-    if (choice == 0)
-    {
+    if (choice == 0){
         return;
     }
-    else if (choice == 1)
-    {
+    else if (choice == 1){
         int drinkChoice;
 
         smallLine();
@@ -442,8 +441,7 @@ void foodItemMorning(){
 
         drinksMenu(drinkChoice);
     }
-    else if (choice == 2)
-    {
+    else if (choice == 2){
         int breakfastChoice;
         clearScreen();
         smallLine();
@@ -512,8 +510,7 @@ void sandwichList(){
     orderSandwich(sandwich, count);
 }
 
-void orderSandwich(Item sandwich[], int count)
-{
+void orderSandwich(Item sandwich[], int count){
     int selectItem;
     printf("Select a sandwich: ");
     scanf("%d", &selectItem);
